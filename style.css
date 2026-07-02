@@ -126,7 +126,7 @@ a {
 /* Hero Section */
 .hero {
     min-height: 100vh;
-    background: url('https://images.pexels.com/photos/28523280/pexels-photo-28523280.jpeg');
+    background: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1613&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
