@@ -19,6 +19,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#history">History</a></li>
+                <li><a href="#statistics">Statistics</a></li>
             </ul>
             <div class="menu-toggle">
                 <i class="fas fa-bars"></i>
@@ -143,6 +144,49 @@
                 <div class="stat-item">
                     <span class="stat-number" data-count="1100">0</span>
                     <span class="stat-label">Tons CO₂ Absorbed</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="statistics" class="statistics">
+        <div class="container">
+            <h2>Tree Impact Calculator</h2>
+            <p class="section-subtitle">Calculate the environmental impact of your tree plantation</p>
+
+            <div class="calculator-card">
+                <div class="calculator-input">
+                    <label for="treeCount">Number of Trees Planted</label>
+                    <input type="number" id="treeCount" placeholder="Enter number of trees" min="1">
+                    <button id="calculateBtn" class="btn btn-primary">Calculate Impact</button>
+                </div>
+
+                <div class="results-grid">
+                    <div class="result-item">
+                        <i class="fas fa-cloud"></i>
+                        <div class="result-value">
+                            <span id="co2Result">0</span>
+                            <span class="unit">kg</span>
+                        </div>
+                        <div class="result-label">CO₂ Absorbed / Year</div>
+                    </div>
+                    <div class="result-item">
+                        <i class="fas fa-tint"></i>
+                        <div class="result-value">
+                            <span id="waterResult">0</span>
+                            <span class="unit">gallons</span>
+                        </div>
+                        <div class="result-label">Water Saved / Year</div>
+                    </div>
+                    <div class="result-item">
+                        <i class="fas fa-wind"></i>
+                        <div class="result-value">
+                            <span id="oxygenResult">0</span>
+                            <span class="unit">kg</span>
+                        </div>
+                        <div class="result-label">Oxygen Produced / Year</div>
+                    </div>
                 </div>
             </div>
         </div>
