@@ -83,43 +83,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Impact Calculator
-    const treeCountInput = document.getElementById('treeCount');
-    const calculateBtn = document.getElementById('calculateBtn');
-    const co2Result = document.getElementById('co2Result');
-    const waterResult = document.getElementById('waterResult');
-    const oxygenResult = document.getElementById('oxygenResult');
-
-    // Tree impact calculations (per tree per year)
-    const CO2_PER_TREE = 22; // kg of CO2 absorbed per year
-    const WATER_PER_TREE = 1000; // gallons of water saved per year
-    const OXYGEN_PER_TREE = 118; // kg of oxygen produced per year
-
-    calculateBtn.addEventListener('click', calculateImpact);
-    treeCountInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            calculateImpact();
-        }
-    });
-
-    function calculateImpact() {
-        const treeCount = parseInt(treeCountInput.value);
-
-        if (!treeCount || treeCount <= 0) {
-            alert('Please enter a valid number of trees');
-            return;
-        }
-
-        // Calculate impact
-        const co2 = treeCount * CO2_PER_TREE;
-        const water = treeCount * WATER_PER_TREE;
-        const oxygen = treeCount * OXYGEN_PER_TREE;
-
-        // Update results immediately
-        co2Result.textContent = co2.toLocaleString();
-        waterResult.textContent = water.toLocaleString();
-        oxygenResult.textContent = oxygen.toLocaleString();
-    }
-
     console.log('JavaScript loaded successfully!');
 });
