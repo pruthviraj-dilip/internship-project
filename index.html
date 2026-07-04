@@ -19,6 +19,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#history">History</a></li>
+                <li><a href="#calculator">Impact Calculator</a></li>
             </ul>
             <div class="menu-toggle">
                 <i class="fas fa-bars"></i>
@@ -143,6 +144,101 @@
                 <div class="stat-item">
                     <span class="stat-number" data-count="1100">0</span>
                     <span class="stat-label">Tons CO₂ Absorbed</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Calculator Section -->
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <!-- Intro -->
+            <div class="calculator-intro">
+                <h2>One Tree. Tons of CO2. Thousands of Litres of Water.</h2>
+                <p>You will be amazed to know, a single tree can absorb <span class="highlight">22 kg of CO₂</span> per year, save <span class="highlight">1,500 Litres of water</span>, and release <span class="highlight">118 kg of oxygen</span> — enough for one person to breathe.</p>
+            </div>
+
+            <!-- Calculator -->
+            <div class="calculator-panel">
+                <div class="calculator-card">
+                    <!-- Input -->
+                    <div class="input-section">
+                        <label class="input-label">How many trees would you like to plant?</label>
+                        <div class="stepper-wrapper">
+                            <button class="stepper-btn" id="decrease-btn">−</button>
+                            <input type="number" class="stepper-input" id="tree-input" value="1" min="1" max="10000">
+                            <button class="stepper-btn" id="increase-btn">+</button>
+                        </div>
+                        <div class="preset-buttons">
+                            <button class="preset-btn" data-value="1">1</button>
+                            <button class="preset-btn" data-value="10">10</button>
+                            <button class="preset-btn" data-value="100">100</button>
+                            <button class="preset-btn" data-value="1000">1000</button>
+                        </div>
+                    </div>
+
+                    <!-- Visualization -->
+                    <div class="visualization">
+                        <div class="tree-rings-container">
+                            <svg class="tree-rings-svg" viewBox="0 0 350 350" id="tree-rings-svg"></svg>
+                            <div class="stat-label-item top">
+                                <span class="stat-value" id="co2-label">22</span>
+                                <span class="stat-unit">kg CO₂/year</span>
+                            </div>
+                            <div class="stat-label-item right">
+                                <span class="stat-value" id="water-label">1,500</span>
+                                <span class="stat-unit">Litres/year</span>
+                            </div>
+                            <div class="stat-label-item bottom">
+                                <span class="stat-value" id="oxygen-label">118</span>
+                                <span class="stat-unit">kg O₂/year</span>
+                            </div>
+                        </div>
+
+                        <!-- Results Grid -->
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <div class="result-value" id="co2-result">22</div>
+                                <div class="result-unit">kg CO₂/year</div>
+                                <div class="result-label">CO₂ Absorbed</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-value" id="water-result">1,500</div>
+                                <div class="result-unit">Litres/year</div>
+                                <div class="result-label">Water Saved</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-value" id="oxygen-result">118</div>
+                                <div class="result-unit">kg/year</div>
+                                <div class="result-label">Oxygen Released</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-value" id="people-result">1</div>
+                                <div class="result-unit">person</div>
+                                <div class="result-label">People Supported</div>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Stats (hidden on desktop) -->
+                        <div class="mobile-stats">
+                            <div class="mobile-stat-item">
+                                <span class="stat-name">CO₂ Absorbed</span>
+                                <span class="stat-value" id="mobile-co2">22 kg/year</span>
+                            </div>
+                            <div class="mobile-stat-item">
+                                <span class="stat-name">Water Saved</span>
+                                <span class="stat-value" id="mobile-water">1,500 L/year</span>
+                            </div>
+                            <div class="mobile-stat-item">
+                                <span class="stat-name">Oxygen Released</span>
+                                <span class="stat-value" id="mobile-oxygen">118 kg/year</span>
+                            </div>
+                            <div class="mobile-stat-item">
+                                <span class="stat-name">People Supported</span>
+                                <span class="stat-value" id="mobile-people">1 person</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
