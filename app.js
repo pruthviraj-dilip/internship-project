@@ -323,5 +323,260 @@ document.addEventListener('DOMContentLoaded', function() {
         init();
     })();
 
+    /* ========================================
+       STATISTICS SECTION
+       ======================================== */
+    (function() {
+        const statisticsSection = document.getElementById('statistics');
+        if (!statisticsSection) return;
+
+        // ========================================
+        // SECTION 1: BAR RACE CHART
+        // ========================================
+        (function() {
+            const container = document.getElementById('bar-race-container');
+            const playBtn = document.getElementById('bar-race-play');
+            if (!container) return;
+
+            // Placeholder data - REPLACE with real NGO record later
+            const treeData = [
+                { year: 2021, trees: 800 },
+                { year: 2022, trees: 2200 },
+                { year: 2023, trees: 4100 },
+                { year: 2024, trees: 7600 },
+                { year: 2025, trees: 12500 },
+                { year: 2026, trees: 19000 }
+            ];
+
+            const maxTrees = Math.max(...treeData.map(d => d.trees));
+
+            // Create bar elements
+            treeData.forEach((data, index) => {
+                const row = document.createElement('div');
+                row.className = 'bar-race-row';
+                row.innerHTML = `
+                    <span class="bar-year">${data.year}</span>
+                    <div class="bar-track">
+                        <div class="bar-fill" data-index="${index}" data-target="${data.trees}">
+                            <span class="bar-value">0</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            // Animation function
+            function animateBars() {
+                const bars = container.querySelectorAll('.bar-fill');
+                const duration = 2000;
+                const startTime = performance.now();
+
+                bars.forEach(bar => {
+                    const target = parseInt(bar.dataset.target);
+                    const valueSpan = bar.querySelector('.bar-value');
+                    const index = parseInt(bar.dataset.index);
+
+                    function updateBar(currentTime) {
+                        const elapsed = currentTime - startTime - (index * 300); // Stagger animation
+                        if (elapsed < 0) {
+                            requestAnimationFrame(updateBar);
+                            return;
+                        }
+
+                        const progress = Math.min(elapsed / duration, 1);
+                        const currentValue = Math.floor(progress * target);
+                        const widthPercent = (currentValue / maxTrees) * 100;
+
+                        bar.style.width = widthPercent + '%';
+                        valueSpan.textContent = currentValue.toLocaleString();
+
+                        if (progress < 1) {
+                            requestAnimationFrame(updateBar);
+                        } else {
+                            valueSpan.textContent = target.toLocaleString();
+                        }
+                    }
+
+                    requestAnimationFrame(updateBar);
+                });
+            }
+
+            // Play button click
+            if (playBtn) {
+                playBtn.addEventListener('click', animateBars);
+            }
+
+            // Scroll-triggered animation
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateBars();
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            statsObserver.observe(container);
+        })();
+
+        // ========================================
+        // SECTION 2: DONUT CHART
+        // ========================================
+        (function() {
+            const canvas = document.getElementById('species-donut-chart');
+            if (!canvas) return;
+
+            // Placeholder data - REPLACE with real species data later
+            const speciesData = {
+                labels: ['Neem', 'Mango', 'Tulsi', 'Banyan', 'Other'],
+                values: [34, 28, 18, 12, 8]
+            };
+
+            const colors = ['#2E7D32', '#4CAF50', '#FF9800', '#2196F3', '#9C27B0'];
+
+            const ctx = canvas.getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: speciesData.labels,
+                    datasets: [{
+                        data: speciesData.values,
+                        backgroundColor: colors,
+                        borderWidth: 0,
+                        hoverOffset: 15
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    cutout: '60%',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Custom legend
+            const legendContainer = document.getElementById('species-legend');
+            if (legendContainer) {
+                speciesData.labels.forEach((label, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'legend-item';
+                    item.innerHTML = `
+                        <span class="legend-color" style="background: ${colors[index]}"></span>
+                        <span class="legend-label">${label}</span>
+                        <span class="legend-value">${speciesData.values[index]}%</span>
+                    `;
+                    legendContainer.appendChild(item);
+                });
+            }
+        })();
+
+        // ========================================
+        // SECTION 3: BEFORE/AFTER SLIDER
+        // ========================================
+        (function() {
+            const slider = document.getElementById('comparison-slider');
+            const after = document.getElementById('comparison-after');
+            const divider = document.getElementById('comparison-divider');
+
+            if (!slider || !after || !divider) return;
+
+            let isDragging = false;
+
+            function updateSlider(x) {
+                const rect = slider.getBoundingClientRect();
+                let percentage = ((x - rect.left) / rect.width) * 100;
+                percentage = Math.max(0, Math.min(100, percentage));
+
+                after.style.width = percentage + '%';
+                divider.style.left = percentage + '%';
+            }
+
+            // Mouse events
+            divider.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    updateSlider(e.clientX);
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            // Touch events for mobile
+            divider.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                e.preventDefault();
+            });
+
+            document.addEventListener('touchmove', (e) => {
+                if (isDragging && e.touches[0]) {
+                    updateSlider(e.touches[0].clientX);
+                }
+            });
+
+            document.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+
+            // Click anywhere on slider to jump
+            slider.addEventListener('click', (e) => {
+                if (e.target === divider || divider.contains(e.target)) return;
+                updateSlider(e.clientX);
+            });
+        })();
+
+        // ========================================
+        // SECTION 4: MILESTONE TIMELINE
+        // ========================================
+        (function() {
+            const timeline = document.getElementById('milestone-timeline');
+            if (!timeline) return;
+
+            // Placeholder milestone data - REPLACE with real NGO History later
+            const milestones = [
+                { year: 2019, description: 'NGO Founded' },
+                { year: 2021, description: '1000th tree' },
+                { year: 2023, description: 'First District wide drive' },
+                { year: 2025, description: '10000th tree planted' },
+                { year: 2026, description: 'This website launches' }
+            ];
+
+            const itemsContainer = document.createElement('div');
+            itemsContainer.className = 'milestone-items';
+
+            milestones.forEach((milestone, index) => {
+                const item = document.createElement('div');
+                item.className = 'milestone-item';
+                item.innerHTML = `
+                    <div class="milestone-dot"></div>
+                    <div class="milestone-content">
+                        <span class="milestone-year">${milestone.year}</span>
+                        <span class="milestone-description">${milestone.description}</span>
+                    </div>
+                `;
+                itemsContainer.appendChild(item);
+            });
+
+            timeline.appendChild(itemsContainer);
+        })();
+
+    })();
+
     console.log('JavaScript loaded successfully!');
 });
