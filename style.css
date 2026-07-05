@@ -98,9 +98,9 @@ a {
     color: var(--primary-color);
 }
 
-.logo i {
+/* .logo i {
     font-size: 1.8rem;
-}
+} */
 
 .logo img {
     width: 50px;
@@ -248,7 +248,7 @@ a {
 
 .timeline {
     position: relative;
-    max-width: 700px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -399,13 +399,22 @@ a {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.footer-logo img{
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 1px solid black;
 }
 
 .footer p {
     opacity: 0.8;
+    margin-top: 15px;
     margin-bottom: 20px;
 }
 
