@@ -540,10 +540,35 @@ a {
     border-radius: 15px;
     padding: 40px;
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* Left side - Input Section */
+.calculator-card .input-section {
+    flex: 1;
+    display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 15px;
+    padding: 30px;
+    background: var(--light-color);
+}
+
+/* Right side - Visualization */
+.calculator-card .visualization {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 30px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 /* Input Section */
@@ -639,8 +664,11 @@ a {
 
 .tree-rings-container {
     position: relative;
-    width: 350px;
-    height: 350px;
+    width: 320px;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .tree-rings-svg {
@@ -654,22 +682,23 @@ a {
     flex-direction: column;
     align-items: center;
     gap: 2px;
+    padding: 10px;
 }
 
 .stat-label-item.top {
-    top: -5px;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
 }
 
 .stat-label-item.right {
-    right: -10px;
+    right: 0;
     top: 50%;
     transform: translateY(-50%);
 }
 
 .stat-label-item.bottom {
-    bottom: -5px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -695,10 +724,7 @@ a {
 
 /* Results Grid */
 .results-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    width: 100%;
+    display: none;
 }
 
 .result-card {
@@ -750,6 +776,20 @@ a {
 
     .calculator-card {
         padding: 25px;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .calculator-card .input-section,
+    .calculator-card .visualization {
+        width: 100%;
+    }
+
+    .calculator-card .input-section {
+        border: 3px solid var(--primary-color);
+        border-radius: 15px;
+        padding: 25px;
+        background: var(--light-color);
     }
 
     .tree-rings-container {
