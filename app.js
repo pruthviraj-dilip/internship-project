@@ -578,5 +578,65 @@ document.addEventListener('DOMContentLoaded', function() {
 
     })();
 
+    /* ============================================
+       History Section - Vintage Map Parallax Effect
+       ============================================ */
+    (function initHistoryParallax() {
+        const historySection = document.querySelector('.history');
+        const parallaxMap = document.querySelector('.parallax-map');
+
+        if (!historySection || !parallaxMap) {
+            console.log('History parallax elements not found');
+            return;
+        }
+
+        // Check if user has replaced the placeholder
+        if (parallaxMap.src.includes('YOUR_VINTAGE_MAP_IMAGE_URL_HERE')) {
+            console.log('📍 Please replace the placeholder image URL in index.html for the vintage map background');
+            parallaxMap.style.display = 'none';
+            return;
+        }
+
+        let ticking = false;
+        const parallaxIntensity = 0.3; // 30% of scroll speed - subtle effect
+        const mobileParallaxIntensity = 0.15; // Reduced for mobile
+
+        // Check if mobile device
+        const isMobile = window.innerWidth <= 768;
+        const intensity = isMobile ? mobileParallaxIntensity : parallaxIntensity;
+
+        function updateParallax() {
+            const sectionRect = historySection.getBoundingClientRect();
+            const sectionTop = sectionRect.top;
+            const sectionHeight = sectionRect.height;
+
+            // Only animate when section is in viewport
+            if (sectionTop < window.innerHeight && sectionTop > -sectionHeight) {
+                // Calculate scroll offset relative to section position
+                const scrollProgress = -sectionTop * intensity;
+
+                // Apply transform with smooth easing
+                parallaxMap.style.transform = `translateY(${scrollProgress}px)`;
+            }
+
+            ticking = false;
+        }
+
+        function onScroll() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+
+        // Use passive listener for better performance
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Initial position
+        updateParallax();
+
+        console.log('✨ Vintage map parallax effect initialized');
+    })();
+
     console.log('JavaScript loaded successfully!');
 });

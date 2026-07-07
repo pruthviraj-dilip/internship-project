@@ -316,6 +316,242 @@ a {
     color: #555;
 }
 
+/* ============================================
+   History Section - Vintage Map Background
+   ============================================ */
+
+/* Main History Section Container */
+.history {
+    position: relative;
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+/* Vintage Map Background Layer */
+.history-map-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* Parallax Map Image */
+.parallax-map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    /* ============================================
+       📍 PLACE YOUR VINTAGE MAP IMAGE LINK HERE
+
+       If you prefer using CSS background-image instead of <img> tag,
+       you can comment out the <img> tag above and uncomment below:
+
+       background-image: url("YOUR_VINTAGE_MAP_IMAGE_URL_HERE");
+       background-size: cover;
+       background-position: center;
+       ============================================ */
+    opacity: 0.4;
+    transform: translateY(0);
+    will-change: transform;
+    transition: transform 0.1s ease-out;
+}
+
+/* Paper Texture Overlay */
+.history-paper-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    /* Vintage paper texture effect using CSS */
+    background:
+        /* Subtle paper grain texture */
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
+        /* Sepia/warm overlay */
+        linear-gradient(
+            to bottom,
+            rgba(139, 90, 43, 0.08) 0%,
+            rgba(139, 90, 43, 0.05) 50%,
+            rgba(101, 67, 33, 0.1) 100%
+        );
+    background-blend-mode: overlay, normal;
+    opacity: 0.6;
+}
+
+/* Vignette Effect Overlay */
+.history-vignette-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    /* Soft vignette effect - darker at edges */
+    background: radial-gradient(
+        ellipse at center,
+        rgba(60, 40, 20, 0) 0%,
+        rgba(60, 40, 20, 0.1) 40%,
+        rgba(60, 40, 20, 0.25) 70%,
+        rgba(60, 40, 20, 0.4) 100%
+    );
+}
+
+/* Content Wrapper with Readable Background */
+.history-content-wrapper {
+    position: relative;
+    z-index: 3;
+    background: rgba(245, 235, 220, 0.85);
+    padding: 60px 0;
+    margin: 0;
+    box-shadow:
+        inset 0 0 100px rgba(139, 90, 43, 0.1),
+        0 0 50px rgba(60, 40, 20, 0.2);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+/* Vintage styling for the heading */
+.history h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #3d2914;
+    margin-bottom: 50px;
+    text-shadow: 1px 1px 2px rgba(139, 90, 43, 0.3);
+    font-family: var(--font-heading);
+}
+
+/* Timeline styling for vintage look */
+.timeline::before {
+    background: linear-gradient(
+        to bottom,
+        #8B5A2B 0%,
+        #6B4423 50%,
+        #8B5A2B 100%
+    );
+    box-shadow: 0 0 8px rgba(139, 90, 43, 0.5);
+}
+
+.timeline-dot {
+    background: linear-gradient(135deg, #8B5A2B 0%, #5D4037 100%);
+    border: 2px solid #A1887F;
+    box-shadow: 0 2px 8px rgba(60, 40, 20, 0.4);
+}
+
+.timeline-content {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 248, 235, 0.95) 0%,
+        rgba(245, 235, 220, 0.95) 100%
+    );
+    padding: 20px 25px;
+    border-radius: 8px;
+    border: 1px solid rgba(139, 90, 43, 0.3);
+    box-shadow:
+        3px 3px 10px rgba(60, 40, 20, 0.15),
+        inset 0 0 20px rgba(139, 90, 43, 0.05);
+}
+
+.timeline-content h3 {
+    color: #5D4037;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-family: var(--font-heading);
+    border-bottom: 2px solid rgba(139, 90, 43, 0.3);
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+.timeline-content p {
+    color: #4E342E;
+    line-height: 1.7;
+}
+
+/* Responsive Design for History Section */
+@media (max-width: 768px) {
+    .history-map-bg {
+        height: 150%;
+    }
+
+    .parallax-map {
+        opacity: 0.25;
+    }
+
+    .history-paper-overlay {
+        opacity: 0.4;
+    }
+
+    .history-vignette-overlay {
+        background: radial-gradient(
+            ellipse at center,
+            rgba(60, 40, 20, 0) 0%,
+            rgba(60, 40, 20, 0.15) 40%,
+            rgba(60, 40, 20, 0.3) 70%,
+            rgba(60, 40, 20, 0.45) 100%
+        );
+    }
+
+    .history-content-wrapper {
+        padding: 40px 0;
+    }
+
+    .history h2 {
+        font-size: 2rem;
+    }
+
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 50px !important;
+        padding-right: 0 !important;
+        text-align: left !important;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-dot,
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: 10px;
+        right: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .history {
+        padding: 60px 0;
+    }
+
+    .history h2 {
+        font-size: 1.75rem;
+    }
+
+    .parallax-map {
+        opacity: 0.2;
+    }
+
+    .history-content-wrapper {
+        padding: 30px 0;
+    }
+
+    .timeline-content {
+        padding: 15px 18px;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.3rem;
+    }
+}
+
 /* Stats Section */
 .stats {
     padding: 60px 0;
