@@ -638,5 +638,83 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('✨ Vintage map parallax effect initialized');
     })();
 
+    /* ========================================
+       LIGHTBOX - Photo Gallery Full Screen
+       ======================================== */
+    (function initLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+        const photoItems = document.querySelectorAll('.photo-item img');
+
+        if (!lightbox || photoItems.length === 0) return;
+
+        let currentIndex = 0;
+        const totalPhotos = photoItems.length;
+
+        // Open lightbox when clicking a photo
+        photoItems.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                currentIndex = index;
+                openLightbox(img.src);
+            });
+        });
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = ''; // Enable scrolling
+        }
+
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + totalPhotos) % totalPhotos;
+            lightboxImg.src = photoItems[currentIndex].src;
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % totalPhotos;
+            lightboxImg.src = photoItems[currentIndex].src;
+        }
+
+        // Close button click
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        // Navigation buttons
+        lightboxPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showPrev();
+        });
+
+        lightboxNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showNext();
+        });
+
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showPrev();
+            if (e.key === 'ArrowRight') showNext();
+        });
+
+        console.log('✨ Lightbox initialized');
+    })();
+
     console.log('JavaScript loaded successfully!');
 });
