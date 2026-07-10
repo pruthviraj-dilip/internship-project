@@ -17,6 +17,7 @@
     --light-color: #E8F5E9;
     --text-color: #333;
     --white: #fff;
+    --gold: #D98F3B;
     /* Font variables */
     --font-heading: 'Fraunces', serif;
     --font-body: 'Work Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -1298,6 +1299,500 @@ a {
 }
 
 /* ========================================
+   ABOUT PAGE - MAIN SECTION
+   ======================================== */
+.about-page {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.about-page .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+    font-family: var(--font-heading);
+}
+
+.about-page .section-subtitle {
+    text-align: center;
+    color: var(--gray-caption);
+    margin-bottom: 50px;
+    font-size: 1.1rem;
+}
+
+.about-subsection {
+    margin-bottom: 80px;
+}
+
+.about-subsection:last-child {
+    margin-bottom: 0;
+}
+
+/* ========================================
+   SUBSECTION 1: WHO WE ARE
+   ======================================== */
+.who-we-are {
+    background: var(--light-color);
+    padding: 60px 40px;
+    border-radius: 20px;
+    margin: 0 -20px;
+}
+
+/* Main Text Card */
+.who-we-are-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 40px 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 40px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.who-we-are-card p {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.who-we-are-card p:first-of-type {
+    font-size: 1.25rem;
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.who-we-are-list {
+    list-style: none;
+    padding: 0;
+    margin: 25px 0;
+}
+
+.who-we-are-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+    color: #444;
+    line-height: 1.6;
+}
+
+.who-we-are-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    background: var(--primary-color);
+    border-radius: 50%;
+}
+
+.who-we-are-closing {
+    font-size: 1.15rem !important;
+    color: var(--dark-color) !important;
+    font-weight: 600 !important;
+    margin-top: 25px !important;
+    margin-bottom: 0 !important;
+}
+
+/* Three Icon Sub-Cards */
+.who-we-are-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.icon-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 30px 35px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    min-width: 220px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.icon-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.icon-badge {
+    width: 60px;
+    height: 60px;
+    background: var(--light-color);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.icon-badge i {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+}
+
+.icon-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--dark-color);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.icon-card-subtitle {
+    font-size: 0.95rem;
+    color: var(--gray-caption);
+    margin: 0;
+}
+
+/* ========================================
+   SUBSECTION 2: INITIATIVES & EVENTS
+   ======================================== */
+.initiatives-events {
+    padding: 40px 0;
+}
+
+.initiatives-container {
+    position: relative;
+    height: 420px;
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--light-color);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* Scattered Activity Circles */
+.activity-circle {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.activity-circle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.activity-circle i {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.activity-name {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    color: var(--dark-color);
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Scattered positions - varying positions and sizes */
+.activity-circle[data-activity="yoga"] {
+    top: 15%;
+    left: 8%;
+    width: 95px;
+    height: 95px;
+}
+
+.activity-circle[data-activity="tree-library"] {
+    top: 10%;
+    left: 35%;
+    width: 110px;
+    height: 110px;
+}
+
+.activity-circle[data-activity="solar"] {
+    top: 20%;
+    right: 12%;
+    width: 90px;
+    height: 90px;
+}
+
+.activity-circle[data-activity="drawing"] {
+    top: 45%;
+    left: 5%;
+    width: 105px;
+    height: 105px;
+}
+
+.activity-circle[data-activity="plantation"] {
+    top: 40%;
+    left: 38%;
+    width: 115px;
+    height: 115px;
+}
+
+.activity-circle[data-activity="nursery"] {
+    top: 50%;
+    right: 8%;
+    width: 100px;
+    height: 100px;
+}
+
+.activity-circle[data-activity="gym"] {
+    bottom: 12%;
+    left: 18%;
+    width: 95px;
+    height: 95px;
+}
+
+.activity-circle[data-activity="festival"] {
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 105px;
+    height: 105px;
+}
+
+.activity-circle[data-activity="water"] {
+    bottom: 15%;
+    right: 20%;
+    width: 100px;
+    height: 100px;
+}
+
+/* Activity Modal */
+.activity-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+
+.activity-modal.active {
+    display: block;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--white);
+    border-radius: 20px;
+    padding: 40px 50px;
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--gray-caption);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: var(--dark-color);
+}
+
+.modal-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--light-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.modal-icon i {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+}
+
+.modal-description {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* ========================================
+   SUBSECTION 4: ACKNOWLEDGMENTS
+   ======================================== */
+.acknowledgments {
+    background: var(--light-color);
+    padding: 60px 40px;
+    border-radius: 20px;
+    margin: 0 -20px;
+}
+
+.acknowledgment-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.acknowledgment-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 25px 30px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+    border-left: 4px solid var(--primary-color);
+}
+
+.acknowledgment-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--light-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.acknowledgment-icon i {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+}
+
+.acknowledgment-content {
+    flex: 1;
+}
+
+.acknowledgment-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--dark-color);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.acknowledgment-text {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ========================================
+   SUBSECTION 5: AWARDS
+   ======================================== */
+.awards {
+    padding: 40px 0;
+}
+
+.awards-cards {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.award-card {
+    background: #FFF8E7;
+    border-radius: 16px;
+    padding: 35px 40px;
+    text-align: center;
+    max-width: 380px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-top: 4px solid var(--gold);
+    position: relative;
+    flex: 1;
+    min-width: 300px;
+}
+
+.award-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #F5DEB3;
+    color: var(--gold);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: var(--font-mono);
+}
+
+.award-icon {
+    width: 80px;
+    height: 80px;
+    background: #FFF3D0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.award-icon i {
+    font-size: 2.2rem;
+    color: var(--gold);
+}
+
+.award-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.award-description {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ========================================
    STATISTICS SECTION
    ======================================== */
 .statistics {
@@ -1711,5 +2206,174 @@ a {
 
     .milestone-description {
         font-size: 0.8rem;
+    }
+}
+
+/* ========================================
+   RESPONSIVE STYLES - ABOUT PAGE
+   ======================================== */
+@media (max-width: 768px) {
+    /* About Page General */
+    .about-page {
+        padding: 60px 0;
+    }
+
+    .about-page .section-title {
+        font-size: 2rem;
+    }
+
+    .about-subsection {
+        margin-bottom: 60px;
+    }
+
+    /* WHO WE ARE - Responsive */
+    .who-we-are {
+        padding: 40px 20px;
+    }
+
+    .who-we-are-card {
+        padding: 25px 20px;
+    }
+
+    .who-we-are-card p {
+        font-size: 1rem;
+    }
+
+    .who-we-are-card p:first-of-type {
+        font-size: 1.1rem;
+    }
+
+    .who-we-are-list li {
+        font-size: 0.95rem;
+        padding-left: 25px;
+    }
+
+    .who-we-are-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .icon-card {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* INITIATIVES - Responsive (grid fallback) */
+    .initiatives-container {
+        height: auto;
+        padding: 30px 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .activity-circle {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        width: 80px !important;
+        height: 80px !important;
+        margin: 0 auto;
+    }
+
+    .activity-circle i {
+        font-size: 1.4rem;
+    }
+
+    .activity-name {
+        font-size: 0.65rem;
+    }
+
+    .modal-content {
+        padding: 30px 25px;
+    }
+
+    .modal-title {
+        font-size: 1.3rem;
+    }
+
+    .modal-description {
+        font-size: 0.95rem;
+    }
+
+    /* ACKNOWLEDGMENTS - Responsive */
+    .acknowledgments {
+        padding: 40px 20px;
+    }
+
+    .acknowledgment-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .acknowledgment-icon {
+        margin: 0 auto;
+    }
+
+    .acknowledgment-title {
+        font-size: 1.1rem;
+    }
+
+    .acknowledgment-text {
+        font-size: 0.9rem;
+    }
+
+    /* AWARDS - Responsive */
+    .awards-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .award-card {
+        width: 100%;
+        max-width: 350px;
+        padding: 30px 25px;
+    }
+
+    .award-title {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-page .section-title {
+        font-size: 1.75rem;
+    }
+
+    .about-page .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    /* Initiatives - even smaller grid */
+    .initiatives-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 20px 15px;
+    }
+
+    .activity-circle {
+        width: 70px !important;
+        height: 70px !important;
+    }
+
+    .activity-circle i {
+        font-size: 1.2rem;
+    }
+
+    .who-we-are {
+        padding: 30px 15px;
+        margin: 0 -10px;
+        border-radius: 15px;
+    }
+
+    .acknowledgments {
+        padding: 30px 15px;
+        margin: 0 -10px;
+        border-radius: 15px;
     }
 }
