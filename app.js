@@ -639,6 +639,104 @@ document.addEventListener('DOMContentLoaded', function() {
     })();
 
     /* ========================================
+       ABOUT PAGE - INITIATIVES MODAL
+       ======================================== */
+    (function initInitiativesModal() {
+        const modal = document.getElementById('activity-modal');
+        if (!modal) return;
+
+        // Activity data with descriptions
+        const activityData = {
+            'yoga': {
+                title: 'Morning Yoga at Oxygen Park',
+                description: '5:30–7:00 AM daily, open to all residents, held right among the trees the community planted.',
+                icon: 'fa-spa'
+            },
+            'tree-library': {
+                title: 'Tree Academy (Tree Library)',
+                description: 'Open every weekend for local students, covering 40+ native species. Free entry for school groups.',
+                icon: 'fa-book-open'
+            },
+            'solar': {
+                title: 'Solar Panels',
+                description: 'Huge solar panels installed for the parks in sustainability.',
+                icon: 'fa-solar-panel'
+            },
+            'drawing': {
+                title: 'Drawing & Environmental Competitions',
+                description: 'Drawing competitions and environmental-awareness contests for students, encouraging young people to engage creatively with nature.',
+                icon: 'fa-palette'
+            },
+            'plantation': {
+                title: 'Plantation Drives',
+                description: 'A tree for a birthday. A tree for a wedding anniversary. And for families who\'ve lost someone, a tree planted by their children in remembrance. Alongside regular awareness drives throughout the year.',
+                icon: 'fa-seedling'
+            },
+            'nursery': {
+                title: 'Nursery',
+                description: 'Small plants ready to be taken home.',
+                icon: 'fa-leaf'
+            },
+            'gym': {
+                title: 'Open Gym',
+                description: 'Gym equipment for children and aged people to exercise.',
+                icon: 'fa-dumbbell'
+            },
+            'festival': {
+                title: 'Festival Celebrations',
+                description: 'Celebrating Diwali, Holi and other festivals with locals.',
+                icon: 'fa-christmas-tree'
+            },
+            'water': {
+                title: 'Clean Drinking Water',
+                description: 'Drinking water installed with the help of locals, without any government fund or CSR fund.',
+                icon: 'fa-water'
+            }
+        };
+
+        const modalOverlay = modal.querySelector('.modal-overlay');
+        const modalClose = modal.querySelector('.modal-close');
+        const modalIcon = modal.querySelector('.modal-icon i');
+        const modalTitle = modal.querySelector('.modal-title');
+        const modalDescription = modal.querySelector('.modal-description');
+        const activityCircles = document.querySelectorAll('.activity-circle');
+
+        // Open modal on circle click
+        activityCircles.forEach(circle => {
+            circle.addEventListener('click', () => {
+                const activity = circle.dataset.activity;
+                const data = activityData[activity];
+
+                if (data) {
+                    modalIcon.className = `fas ${data.icon}`;
+                    modalTitle.textContent = data.title;
+                    modalDescription.textContent = data.description;
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Close modal functions
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', closeModal);
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        console.log('✨ Initiatives modal initialized');
+    })();
+
+    /* ========================================
        LIGHTBOX - Photo Gallery Full Screen
        ======================================== */
     (function initLightbox() {
