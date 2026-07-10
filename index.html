@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -25,8 +26,7 @@
                 <li><a href="#calculator">Impact Calculator</a></li>
                 <li><a href="#statistics">Statistics</a></li>
                 <li><a href="#gallery">Gallery</a></li>
-
-
+                <li><a href="#volunteer">Volunteer</a></li>
             </ul>
             <div class="menu-toggle">
                 <i class="fas fa-bars"></i>
@@ -53,13 +53,13 @@
         </div>
     
 
-        <!-- Vintage Paper Texture Overlay -->
-        <div class="history-paper-overlay"></div>
+        <!-- Vintage Paper Texture Overlay  -->
+        <!-- <div class="history-paper-overlay"></div> -->
 
-        <!-- Vignette Effect Overlay -->
-        <div class="history-vignette-overlay"></div>
+         <!-- Vignette Effect Overlay  -->
+        <!-- <div class="history-vignette-overlay"></div> -->
 
-        <!-- Content Container with readable background -->
+         <!-- Content Container with readable background -->
         <div class="history-content-wrapper">
             <div class="container">
                 <h2>Our History</h2>
@@ -350,13 +350,13 @@
                     </div>
                   
                     <div class="video-item">
-                        <iframe src="https://youtu.be/Hr4PAKZtSTo?si=6HxR_f8oZKJVq5yn" frameborder="0" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/Hr4PAKZtSTo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <p class="video-title">Say no to plastic use</p>
                     </div>
-                    
+
                     <div class="video-item">
-                        <iframe src="https://youtu.be/7FQs4kVBTT8?si=VHgf3rp0tDd1R7SB" frameborder="0" allowfullscreen></iframe>
-                        <p class="video-title"></p>
+                        <iframe src="https://youtu.be/7FQs4kVBTT8?si=RhZA8xffkgJyL7Kx&t=30" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <p class="video-title">24 वा वृक्ष वर्धापन दिन सोहळा</p>
                     </div>
                 </div>
             </div>
@@ -370,6 +370,128 @@
         <img src="" alt="Full Screen Photo" id="lightbox-img">
         <span class="nav-btn next-btn" id="lightbox-next">&#10095;</span>
     </div>
+
+    <!-- Volunteer Card Section -->
+    <section id="volunteer" class="volunteer-section">
+        <div class="container">
+            <h2 class="section-title">Become a Volunteer</h2>
+            <p class="section-subtitle">Join our mission to make India greener</p>
+
+            <div class="volunteer-container">
+                <!-- Registration Form -->
+                <div class="volunteer-form-card">
+                    <h3>Register as Volunteer</h3>
+                    <form id="volunteerForm">
+                        <div class="form-group">
+                            <label for="vName">Full Name</label>
+                            <input type="text" id="vName" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vEmail">Email Address</label>
+                            <input type="email" id="vEmail" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vPhone">Phone Number</label>
+                            <input type="tel" id="vPhone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vPhoto">Your Photo (optional)</label>
+                            <input type="file" id="vPhoto" accept="image/*" class="photo-input">
+                            <p class="input-hint">Upload your photo for the card</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="vSkills">Skills (select multiple)</label>
+                            <div class="skills-checkboxes">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="skills" value="Tree Planting">
+                                    🌱 Tree Planting
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="skills" value="Photography">
+                                    📷 Photography
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="skills" value="Social Media">
+                                    📱 Social Media
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="skills" value="Driving">
+                                    🚗 Driving
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="skills" value="Teaching">
+                                    📚 Teaching
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Generate My Card</button>
+                    </form>
+                </div>
+
+                <!-- Volunteer Card Display -->
+                <div class="volunteer-card-display" id="cardDisplay" style="display: none;">
+                    <h3 class="card-display-title">🎉 Your Volunteer Card is Ready!</h3>
+                    <div class="volunteer-card" id="volunteerCard">
+                        <!-- Background decoration -->
+                        <div class="card-bg-pattern"></div>
+                        <div class="card-decoration card-decoration-1"></div>
+                        <div class="card-decoration card-decoration-2"></div>
+
+                        <div class="card-header-section">
+                            <div class="org-badge">
+                                <span class="badge-icon">🌳</span>
+                                <span class="badge-text">NISARG SEVA SAMITI</span>
+                            </div>
+                            <div class="card-type">VOLUNTEER ID CARD</div>
+                        </div>
+
+                        <div class="card-photo-section">
+                            <div class="card-photo-frame">
+                                <img src="" alt="Volunteer Photo" id="cardPhoto" class="card-photo">
+                                <div class="photo-placeholder" id="photoPlaceholder">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="card-status-badge">ACTIVE</div>
+                        </div>
+
+                        <div class="card-info-section">
+                            <h2 class="card-name" id="cardName">Rahul Kumar</h2>
+                            <div class="card-id-badge">
+                                <span class="id-label">Volunteer ID</span>
+                                <span class="id-value" id="cardID">VH-2026-1234</span>
+                            </div>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-tools"></i>
+                                    <span>Skills: <strong id="cardSkillsCount">2</strong></span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Joined: <strong id="cardJoinDate">2026</strong></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer-section">
+                            <div class="card-motto">"Plant a Hope, Grow the Future" 🌱</div>
+                            <div class="card-contact">
+                                <span>📱 nisargsevasamiti.org</span>
+                            </div>
+                        </div>
+
+                        <!-- Card seal -->
+                        <div class="card-seal">
+                            <div class="seal-inner">🌿</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary download-btn" id="downloadBtn">
+                        <i class="fas fa-download"></i> Download My Card
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
