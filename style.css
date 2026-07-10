@@ -220,12 +220,13 @@ a {
 
 .timeline-item:nth-child(odd) {
     left: 0;
-    text-align: right;
+    text-align: left;
     padding-right: 40px;
 }
 
 .timeline-item:nth-child(even) {
     left: 50%;
+    text-align: left;
     padding-left: 40px;
 }
 
@@ -250,16 +251,45 @@ a {
     background: var(--light-color);
     padding: 20px 25px;
     border-radius: 10px;
+    /* Fix text alignment - equal lines */
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    word-wrap: break-word;
 }
 
 .timeline-content h3 {
     color: var(--primary-color);
     font-size: 1.5rem;
     margin-bottom: 10px;
+    text-align: left; /* Keep heading left-aligned */
 }
 
 .timeline-content p {
     color: #555;
+    text-align: justify;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+/* Fix the 2017-2019 bullet points */
+.timeline-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 10px 0 0 0;
+}
+
+.timeline-content ul li {
+    padding: 5px 0;
+    padding-left: 20px;
+    position: relative;
+    text-align: left;
+}
+
+.timeline-content ul li::before {
+    content: "🌱";
+    position: absolute;
+    left: 0;
 }
 
 /* ============================================
@@ -405,6 +435,11 @@ a {
     box-shadow:
         3px 3px 10px rgba(60, 40, 20, 0.15),
         inset 0 0 20px rgba(139, 90, 43, 0.05);
+    /* Fix text alignment - equal lines */
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    word-wrap: break-word;
 }
 
 .timeline-content h3 {
@@ -415,11 +450,34 @@ a {
     border-bottom: 2px solid rgba(139, 90, 43, 0.3);
     padding-bottom: 8px;
     display: inline-block;
+    text-align: left;
 }
 
 .timeline-content p {
     color: #4E342E;
-    line-height: 1.7;
+    line-height: 1.8;
+    text-align: justify;
+    margin-bottom: 10px;
+}
+
+/* Fix the 2017-2019 bullet points */
+.timeline-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 10px 0 0 0;
+}
+
+.timeline-content ul li {
+    padding: 5px 0;
+    padding-left: 20px;
+    position: relative;
+    text-align: left;
+}
+
+.timeline-content ul li::before {
+    content: "🌱";
+    position: absolute;
+    left: 0;
 }
 
 /* Responsive Design for History Section */
@@ -2583,7 +2641,10 @@ a {
 
     .card-display-title {
         padding: 0 20px;
-=======
+    }
+}
+
+/* ========================================
    RESPONSIVE STYLES - ABOUT PAGE
    ======================================== */
 @media (max-width: 768px) {
@@ -2749,6 +2810,5 @@ a {
         padding: 30px 15px;
         margin: 0 -10px;
         border-radius: 15px;
->>>>>>> 1464f5c3a0cb9a35ca2fb649f7f73a75d02ec9ec
     }
 }
