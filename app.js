@@ -815,107 +815,72 @@ document.addEventListener('DOMContentLoaded', function() {
     })();
 
     /* ========================================
-       VOLUNTEER CARD - Generate & Download
+       CONTACT PAGE - Chip Toggle Functionality
        ======================================== */
-    (function initVolunteerCard() {
-        const volunteerForm = document.getElementById('volunteerForm');
-        const cardDisplay = document.getElementById('cardDisplay');
-        const volunteerCard = document.getElementById('volunteerCard');
-        const downloadBtn = document.getElementById('downloadBtn');
+    (function initContactChips() {
+        const chips = document.querySelectorAll('.chip');
 
-        if (!volunteerForm || !cardDisplay || !volunteerCard) {
-            console.log('Volunteer card elements not found');
-            return;
-        }
+        if (chips.length === 0) return;
 
-        // Generate unique Volunteer ID
-        function generateVolunteerID() {
-            const year = new Date().getFullYear();  // 2026
-            const random = Math.floor(Math.random() * 9000) + 1000;  // 1234 to 9999
-            return `VH-${year}-${random}`;  // VH-2026-1234
-        }
-
-        // Handle form submission
-        volunteerForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Get form values
-            const name = document.getElementById('vName').value;
-            const email = document.getElementById('vEmail').value;
-
-            // Get selected skills
-            const skillsCheckboxes = document.querySelectorAll('input[name="skills"]:checked');
-            const skillsCount = skillsCheckboxes.length;
-
-            // Generate volunteer ID
-            const volunteerID = generateVolunteerID();
-
-            // Get current year
-            const currentYear = new Date().getFullYear();
-
-            // Update card with user data
-            document.getElementById('cardName').textContent = name;
-            document.getElementById('cardID').textContent = volunteerID;
-            document.getElementById('cardSkillsCount').textContent = skillsCount;
-            document.getElementById('cardJoinDate').textContent = currentYear;
-
-            // Handle photo upload
-            const photoInput = document.getElementById('vPhoto');
-            const photoPlaceholder = document.getElementById('photoPlaceholder');
-            const cardPhoto = document.getElementById('cardPhoto');
-
-            if (photoInput && photoInput.files && photoInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    if (cardPhoto) {
-                        cardPhoto.src = e.target.result;
-                        cardPhoto.style.display = 'block';
-                        if (photoPlaceholder) {
-                            photoPlaceholder.style.display = 'none';
-                        }
-                    }
-                };
-                reader.readAsDataURL(photoInput.files[0]);
-            } else {
-                // Reset to placeholder if no photo
-                if (photoPlaceholder) {
-                    photoPlaceholder.style.display = 'flex';
-                }
-                if (cardPhoto) {
-                    cardPhoto.style.display = 'none';
-                }
-            }
-
-            // Show the card
-            cardDisplay.style.display = 'flex';
-
-            // Scroll to card
-            cardDisplay.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const isSelected = chip.dataset.selected === 'true';
+                chip.dataset.selected = !isSelected;
+                chip.classList.toggle('selected', !isSelected);
+            });
         });
 
-        // Handle download button click
-        if (downloadBtn) {
-            downloadBtn.addEventListener('click', function() {
-                // Use html2canvas to convert card to image
-                html2canvas(volunteerCard, {
-                    backgroundColor: null,  // Transparent background
-                    scale: 2  // 2x quality (HD)
-                }).then(canvas => {
-                    // Create download link
-                    const link = document.createElement('a');
-                    link.download = 'GreenHope_Volunteer_Card.png';
-                    link.href = canvas.toDataURL('image/png');
-                    link.click();
+        console.log('✨ Contact page chips initialized');
+    })();
 
-                    console.log('✅ Volunteer card downloaded successfully!');
-                }).catch(err => {
-                    console.error('Error generating card:', err);
-                    alert('Sorry, there was an error generating your card. Please try again.');
-                });
+    /* ========================================
+       CONTACT PAGE - Volunteer Form Submission
+       ======================================== */
+    (function initVolunteerForm() {
+        const form = document.getElementById('volunteer-form');
+        if (!form) return;
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form inputs
+            const inputs = form.querySelectorAll('.form-input');
+            const name = inputs[0].value;
+            const email = inputs[1].value;
+            const phone = inputs[2].value;
+
+            // Get selected chips
+            const selectedChips = [];
+            document.querySelectorAll('.chip.selected').forEach(chip => {
+                selectedChips.push(chip.textContent);
             });
-        }
 
-        console.log('✨ Volunteer card feature initialized');
+            // Simple validation
+            if (selectedChips.length === 0) {
+                alert('Please select at least one area of interest.');
+                return;
+            }
+
+            // Log the data (in production, you would send this to a server)
+            console.log('Volunteer Registration:', {
+                name: name,
+                email: email,
+                phone: phone,
+                interests: selectedChips
+            });
+
+            // Show success message
+            alert('Thank you for registering as a volunteer! We will contact you soon.');
+
+            // Reset form
+            form.reset();
+            document.querySelectorAll('.chip.selected').forEach(chip => {
+                chip.dataset.selected = 'false';
+                chip.classList.remove('selected');
+            });
+        });
+
+        console.log('✨ Volunteer form initialized');
     })();
 
     console.log('JavaScript loaded successfully!');
