@@ -23,6 +23,7 @@
     --font-body: 'Work Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --font-mono: 'IBM Plex Mono', monospace;
     --gray-caption: #5B6B5C;
+    --border-color: #C8E6C9;
 }
 
 body {
@@ -2311,5 +2312,450 @@ a {
         padding: 30px 15px;
         margin: 0 -10px;
         border-radius: 15px;
+    }
+}
+
+/* ========================================
+   CONTACT PAGE SECTION
+   ======================================== */
+.contact-page {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.contact-page .container {
+    max-width: 1100px;
+}
+
+/* Main Card Container */
+.contact-card {
+    display: flex;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Left Column - Form */
+.contact-form-column {
+    flex: 1;
+    padding: 50px 40px;
+}
+
+/* Right Column - Contact Info */
+.contact-info-column {
+    flex: 1;
+    background: var(--light-color);
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Contact Heading */
+.contact-heading {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--dark-color);
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* Volunteer Form Styles */
+.volunteer-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-input {
+    padding: 14px 18px;
+    border: 2px solid var(--border-color, #C8E6C9);
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    transition: border-color 0.3s ease;
+    background: var(--white);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.form-input::placeholder {
+    color: #999;
+}
+
+/* Chip Styles */
+.chip-label {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--dark-color);
+    font-weight: 500;
+}
+
+.chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.chip {
+    padding: 10px 18px;
+    border-radius: 25px;
+    border: 2px solid var(--border-color, #C8E6C9);
+    background: #F3F8F3;
+    color: var(--gray-caption);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.chip:hover {
+    border-color: var(--primary-color);
+}
+
+.chip.selected {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* Submit Button */
+.submit-btn {
+    padding: 14px 35px;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 30px;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: center;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: var(--dark-color);
+    transform: translateY(-2px);
+}
+
+/* Contact Info Inner - for flex layout */
+.contact-info-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Contact Details */
+.contact-details {
+    flex: 1;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: var(--gray-caption);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.contact-item i {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.contact-item a {
+    color: var(--gray-caption);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: var(--primary-color);
+}
+
+/* Follow Us Section */
+.follow-us {
+    margin-top: auto;
+    padding-top: 30px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.social-icon i {
+    font-size: 1.2rem;
+}
+
+.social-icon.fa-instagram {
+    color: #E4405F;
+}
+
+.social-icon.fa-facebook-f {
+    color: #1877F2;
+}
+
+.social-icon.fa-youtube {
+    color: #FF0000;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================================
+   SITE-WIDE FOOTER
+   ======================================== */
+.site-footer {
+    background: var(--dark-color);
+    padding: 50px 0 30px;
+    color: #FDFDFB;
+}
+
+.site-footer .container {
+    max-width: 1100px;
+}
+
+/* Top Row */
+.footer-top {
+    display: flex;
+    gap: 40px;
+    align-items: stretch;
+}
+
+/* Map Section */
+.footer-map {
+    flex: 1;
+    min-height: 280px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.footer-map iframe {
+    display: block;
+}
+
+/* Info Section */
+.footer-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-logo img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #EAF3EA;
+    margin-bottom: 20px;
+}
+
+.footer-org-name {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #FDFDFB;
+    margin-bottom: 8px;
+}
+
+.footer-tagline {
+    font-size: 1.1rem;
+    color: #EAF3EA;
+    margin-bottom: 25px;
+}
+
+.footer-credits {
+    font-size: 0.9rem;
+    color: #DCEBDC;
+}
+
+.footer-credits a {
+    color: #DCEBDC;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-credits a:hover {
+    color: var(--white);
+}
+
+.footer-credits i {
+    margin-left: 3px;
+    font-size: 0.85rem;
+}
+
+/* Divider */
+.footer-divider {
+    height: 1px;
+    background: rgba(234, 243, 234, 0.3);
+    margin: 35px 0 25px;
+}
+
+/* Bottom - Copyright */
+.footer-bottom {
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 0.9rem;
+    color: #DCEBDC;
+}
+
+/* ========================================
+   RESPONSIVE: CONTACT PAGE & FOOTER
+   ======================================== */
+@media (max-width: 900px) {
+    .contact-card {
+        flex-direction: column;
+    }
+
+    .contact-form-column,
+    .contact-info-column {
+        padding: 40px 30px;
+    }
+
+    .footer-top {
+        flex-direction: column;
+    }
+
+    .footer-map {
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-page {
+        padding: 60px 0;
+    }
+
+    .contact-heading {
+        font-size: 1.3rem;
+    }
+
+    .form-input {
+        padding: 12px 15px;
+    }
+
+    .chip {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+    }
+
+    .submit-btn {
+        padding: 12px 28px;
+    }
+
+    .contact-item {
+        font-size: 0.9rem;
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .social-icon i {
+        font-size: 1rem;
+    }
+
+    .site-footer {
+        padding: 40px 0 25px;
+    }
+
+    .footer-org-name {
+        font-size: 1.5rem;
+    }
+
+    .footer-tagline {
+        font-size: 1rem;
+    }
+
+    .footer-credits {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-form-column,
+    .contact-info-column {
+        padding: 30px 20px;
+    }
+
+    .contact-heading {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+
+    .chips-container {
+        gap: 8px;
+    }
+
+    .chip {
+        padding: 7px 12px;
+        font-size: 0.75rem;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .footer-map {
+        min-height: 200px;
+    }
+
+    .footer-logo img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .footer-org-name {
+        font-size: 1.3rem;
+    }
+
+    .footer-bottom p {
+        font-size: 0.8rem;
     }
 }

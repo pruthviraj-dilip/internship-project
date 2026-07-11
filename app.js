@@ -814,5 +814,74 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('✨ Lightbox initialized');
     })();
 
+    /* ========================================
+       CONTACT PAGE - Chip Toggle Functionality
+       ======================================== */
+    (function initContactChips() {
+        const chips = document.querySelectorAll('.chip');
+
+        if (chips.length === 0) return;
+
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const isSelected = chip.dataset.selected === 'true';
+                chip.dataset.selected = !isSelected;
+                chip.classList.toggle('selected', !isSelected);
+            });
+        });
+
+        console.log('✨ Contact page chips initialized');
+    })();
+
+    /* ========================================
+       CONTACT PAGE - Volunteer Form Submission
+       ======================================== */
+    (function initVolunteerForm() {
+        const form = document.getElementById('volunteer-form');
+        if (!form) return;
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form inputs
+            const inputs = form.querySelectorAll('.form-input');
+            const name = inputs[0].value;
+            const email = inputs[1].value;
+            const phone = inputs[2].value;
+
+            // Get selected chips
+            const selectedChips = [];
+            document.querySelectorAll('.chip.selected').forEach(chip => {
+                selectedChips.push(chip.textContent);
+            });
+
+            // Simple validation
+            if (selectedChips.length === 0) {
+                alert('Please select at least one area of interest.');
+                return;
+            }
+
+            // Log the data (in production, you would send this to a server)
+            console.log('Volunteer Registration:', {
+                name: name,
+                email: email,
+                phone: phone,
+                interests: selectedChips
+            });
+
+            // Show success message
+            alert('Thank you for registering as a volunteer! We will contact you soon.');
+
+            // Reset form
+            form.reset();
+            document.querySelectorAll('.chip.selected').forEach(chip => {
+                chip.dataset.selected = 'false';
+                chip.classList.remove('selected');
+            });
+        });
+
+        console.log('✨ Volunteer form initialized');
+    })();
+
     console.log('JavaScript loaded successfully!');
 });
