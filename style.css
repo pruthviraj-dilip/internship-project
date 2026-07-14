@@ -1056,8 +1056,8 @@ a {
 
 .initiatives-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
     max-width: 900px;
     margin: 0 auto;
     background: var(--light-color);
@@ -1065,10 +1065,10 @@ a {
     padding: 40px;
 }
 
-/* Grid-based Activity Circles */
+/* Grid Activity Circles */
 .activity-circle {
-    width: 110px;
-    height: 110px;
+    width: 100px;
+    height: 100px;
     background: var(--white);
     border-radius: 50%;
     display: flex;

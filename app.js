@@ -1,3 +1,16 @@
+// Smooth scroll to home section for logo click
+function scrollToHome(event) {
+    event.preventDefault();
+    const homeSection = document.getElementById('home');
+    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+    const scrollPosition = homeSection.offsetTop - navbarHeight;
+
+    window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth'
+    });
+}
+
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -681,7 +694,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'festival': {
                 title: 'Festival Celebrations',
                 description: 'Celebrating Diwali, Holi and other festivals with locals.',
-                icon: 'fa-christmas-tree'
+                icon: 'fa-burst'
             },
             'water': {
                 title: 'Clean Drinking Water',
