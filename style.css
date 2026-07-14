@@ -1361,8 +1361,8 @@ a {
 }
 
 .card-title {
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
     font-size: 1.5rem;
     color: var(--dark-color);
     margin-bottom: 8px;
