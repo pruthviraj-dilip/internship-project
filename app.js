@@ -83,246 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Impact Calculator
-    (function() {
-        const calculatorSection = document.getElementById('calculator');
-        if (!calculatorSection) return;
-
-        // Constants
-        const CO2_PER_TREE = 22;
-        const WATER_PER_TREE = 1500;
-        const OXYGEN_PER_TREE = 188;
-        const OXYGEN_PER_PERSON = 118;
-        const ANIMATION_DURATION = 500;
-
-        // DOM Elements
-        const treeInput = document.getElementById('tree-input');
-        const decreaseBtn = document.getElementById('decrease-btn');
-        const increaseBtn = document.getElementById('increase-btn');
-        const presetButtons = document.querySelectorAll('.preset-btn');
-        const treeRingsSvg = document.getElementById('tree-rings-svg');
-
-        // Result elements
-        const co2Result = document.getElementById('co2-result');
-        const waterResult = document.getElementById('water-result');
-        const oxygenResult = document.getElementById('oxygen-result');
-        const peopleResult = document.getElementById('people-result');
-
-        // Label elements
-        const co2Label = document.getElementById('co2-label');
-        const waterLabel = document.getElementById('water-label');
-        const oxygenLabel = document.getElementById('oxygen-label');
-
-        // Mobile stat elements
-        const mobileCo2 = document.getElementById('mobile-co2');
-        const mobileWater = document.getElementById('mobile-water');
-        const mobileOxygen = document.getElementById('mobile-oxygen');
-        const mobilePeople = document.getElementById('mobile-people');
-
-        // Animation state
-        let animationFrame = null;
-        let currentValues = { co2: 0, water: 0, oxygen: 0, people: 0 };
-        let targetValues = { co2: 0, water: 0, oxygen: 0, people: 0 };
-
-        // Initialize
-        function init() {
-            const initialTrees = parseInt(treeInput.value) || 1;
-            calculateValues(initialTrees);
-            updateDisplay(initialTrees);
-            drawTreeRings(initialTrees);
-            animateNumbers();
-
-            // Event listeners
-            decreaseBtn.addEventListener('click', () => adjustTrees(-1));
-            increaseBtn.addEventListener('click', () => adjustTrees(1));
-            treeInput.addEventListener('input', handleInputChange);
-            treeInput.addEventListener('change', handleInputChange);
-
-            presetButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const value = parseInt(btn.dataset.value);
-                    treeInput.value = value;
-                    updateCalculator(value);
-                });
-            });
-        }
-
-        function adjustTrees(delta) {
-            let currentValue = parseInt(treeInput.value) || 1;
-            let newValue = Math.max(1, Math.min(10000, currentValue + delta));
-            treeInput.value = newValue;
-            updateCalculator(newValue);
-        }
-
-        function handleInputChange() {
-            let value = parseInt(treeInput.value) || 1;
-            value = Math.max(1, Math.min(10000, value));
-            treeInput.value = value;
-            updateCalculator(value);
-        }
-
-        function updateCalculator(trees) {
-            calculateValues(trees);
-            updateDisplay(trees);
-            drawTreeRings(trees);
-            animateNumbers();
-        }
-
-        function calculateValues(trees) {
-            const co2 = trees * CO2_PER_TREE;
-            const water = trees * WATER_PER_TREE;
-            const oxygen = trees * OXYGEN_PER_TREE;
-            const people = oxygen / OXYGEN_PER_PERSON;
-            targetValues = { co2, water, oxygen, people };
-        }
-
-        function updateDisplay(trees) {
-            const co2 = trees * CO2_PER_TREE;
-            const water = trees * WATER_PER_TREE;
-            const oxygen = trees * OXYGEN_PER_TREE;
-            const people = oxygen / OXYGEN_PER_PERSON;
-            const roundedPeople = Math.round(people);
-
-            co2Result.textContent = formatNumber(co2);
-            waterResult.textContent = formatNumber(water);
-            oxygenResult.textContent = formatNumber(oxygen);
-            peopleResult.textContent = formatNumber(roundedPeople);
-
-            co2Label.textContent = formatNumber(co2);
-            waterLabel.textContent = formatNumber(water);
-            oxygenLabel.textContent = formatNumber(oxygen);
-
-            mobileCo2.textContent = `${formatNumber(co2)} kg/year`;
-            mobileWater.textContent = `${formatNumber(water)} L/year`;
-            mobileOxygen.textContent = `${formatNumber(oxygen)} kg/year`;
-
-            const peopleText = roundedPeople === 1 ? 'person' : 'people';
-            mobilePeople.textContent = `${formatNumber(roundedPeople)} ${peopleText}`;
-
-            const peopleUnit = peopleResult.nextElementSibling;
-            peopleUnit.textContent = roundedPeople === 1 ? 'person' : 'people';
-        }
-
-        function formatNumber(num) {
-            return Math.round(num).toLocaleString();
-        }
-
-        function animateNumbers() {
-            if (animationFrame) cancelAnimationFrame(animationFrame);
-
-            const startValues = { ...currentValues };
-            const startTime = performance.now();
-
-            function easeOutCubic(t) {
-                return 1 - Math.pow(1 - t, 3);
-            }
-
-            function update(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / ANIMATION_DURATION, 1);
-                const easedProgress = easeOutCubic(progress);
-
-                currentValues.co2 = startValues.co2 + (targetValues.co2 - startValues.co2) * easedProgress;
-                currentValues.water = startValues.water + (targetValues.water - startValues.water) * easedProgress;
-                currentValues.oxygen = startValues.oxygen + (targetValues.oxygen - startValues.oxygen) * easedProgress;
-                currentValues.people = startValues.people + (targetValues.people - startValues.people) * easedProgress;
-
-                co2Result.textContent = formatNumber(currentValues.co2);
-                waterResult.textContent = formatNumber(currentValues.water);
-                oxygenResult.textContent = formatNumber(currentValues.oxygen);
-
-                const roundedPeople = Math.round(currentValues.people);
-                peopleResult.textContent = formatNumber(roundedPeople);
-
-                const peopleUnit = peopleResult.nextElementSibling;
-                peopleUnit.textContent = roundedPeople === 1 ? 'person' : 'people';
-
-                if (progress < 1) {
-                    animationFrame = requestAnimationFrame(update);
-                } else {
-                    currentValues = { ...targetValues };
-                }
-            }
-
-            animationFrame = requestAnimationFrame(update);
-        }
-
-        function drawTreeRings(trees) {
-            const svgNS = "http://www.w3.org/2000/svg";
-            const centerX = 175;
-            const centerY = 175;
-            const outerRadius = 140;
-            const innerRadius = 30;
-
-            treeRingsSvg.innerHTML = '';
-
-            // Background circle
-            const bgCircle = document.createElementNS(svgNS, 'circle');
-            bgCircle.setAttribute('cx', centerX);
-            bgCircle.setAttribute('cy', centerY);
-            bgCircle.setAttribute('r', outerRadius);
-            bgCircle.setAttribute('fill', '#E8F5E9');
-            treeRingsSvg.appendChild(bgCircle);
-
-            // Ring count (logarithmic)
-            const ringCount = Math.max(1, Math.ceil(Math.log10(trees + 1) * 3));
-            const ringStep = (outerRadius - innerRadius) / ringCount;
-
-            for (let i = 0; i < ringCount; i++) {
-                const radius = outerRadius - (i * ringStep);
-                const ring = document.createElementNS(svgNS, 'circle');
-                ring.setAttribute('cx', centerX);
-                ring.setAttribute('cy', centerY);
-                ring.setAttribute('r', radius);
-                ring.setAttribute('fill', 'none');
-                ring.setAttribute('stroke', '#2E7D32');
-                ring.setAttribute('stroke-width', '2');
-                ring.setAttribute('opacity', '0.6');
-                treeRingsSvg.appendChild(ring);
-            }
-
-            // Center circle
-            const centerCircle = document.createElementNS(svgNS, 'circle');
-            centerCircle.setAttribute('cx', centerX);
-            centerCircle.setAttribute('cy', centerY);
-            centerCircle.setAttribute('r', innerRadius);
-            centerCircle.setAttribute('fill', '#1B5E20');
-            treeRingsSvg.appendChild(centerCircle);
-
-            // Center text
-            const centerText = document.createElementNS(svgNS, 'text');
-            centerText.setAttribute('x', centerX);
-            centerText.setAttribute('y', centerY + 5);
-            centerText.setAttribute('text-anchor', 'middle');
-            centerText.setAttribute('fill', '#fff');
-            centerText.setAttribute('font-size', '14');
-            centerText.setAttribute('font-weight', '700');
-            centerText.textContent = trees >= 1000 ? `${(trees/1000).toFixed(1)}k` : trees;
-            treeRingsSvg.appendChild(centerText);
-
-            // Leader lines
-            drawLeaderLine(centerX, centerY - outerRadius, centerX, centerY - outerRadius - 20);
-            drawLeaderLine(centerX + outerRadius, centerY, centerX + outerRadius + 20, centerY);
-            drawLeaderLine(centerX, centerY + outerRadius, centerX, centerY + outerRadius + 20);
-        }
-
-        function drawLeaderLine(x1, y1, x2, y2) {
-            const svgNS = "http://www.w3.org/2000/svg";
-            const line = document.createElementNS(svgNS, 'line');
-            line.setAttribute('x1', x1);
-            line.setAttribute('y1', y1);
-            line.setAttribute('x2', x2);
-            line.setAttribute('y2', y2);
-            line.setAttribute('stroke', '#2E7D32');
-            line.setAttribute('stroke-width', '2');
-            line.setAttribute('stroke-dasharray', '5, 5');
-            line.setAttribute('opacity', '0.6');
-            treeRingsSvg.appendChild(line);
-        }
-
-        init();
-    })();
-
     /* ========================================
        STATISTICS SECTION
        ======================================== */
@@ -331,7 +91,243 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!statisticsSection) return;
 
         // ========================================
-        // SECTION 1: BAR RACE CHART
+        // IMPACT CALCULATOR
+        // ========================================
+        (function() {
+            const calcSection = document.getElementById('impact-calculator-section');
+            if (!calcSection) return;
+
+            // Constants
+            const CO2_PER_TREE = 22;
+            const WATER_PER_TREE = 1500;
+            const OXYGEN_PER_TREE = 118;
+            const ANIMATION_DURATION = 500;
+
+            // DOM Elements
+            const treeInput = document.getElementById('calc-tree-input');
+            const decreaseBtn = document.getElementById('calc-decrease-btn');
+            const increaseBtn = document.getElementById('calc-increase-btn');
+            const presetButtons = document.querySelectorAll('#impact-calculator-section .preset-btn');
+            const treeRingsSvg = document.getElementById('calc-tree-rings-svg');
+
+            // Result elements
+            const co2Value = document.getElementById('calc-co2-value');
+            const waterValue = document.getElementById('calc-water-value');
+            const oxygenValue = document.getElementById('calc-oxygen-value');
+            const oxygenCaption = document.getElementById('calc-oxygen-caption');
+
+            // Mobile stat elements
+            const mobileCo2 = document.getElementById('mobile-calc-co2');
+            const mobileWater = document.getElementById('mobile-calc-water');
+            const mobileOxygen = document.getElementById('mobile-calc-oxygen');
+
+            // Track previous values for smooth animation
+            let previousValues = { co2: 0, water: 0, oxygen: 0 };
+            let currentDisplayedValues = { co2: 0, water: 0, oxygen: 0 };
+            let animationFrame = null;
+
+            // ========================================
+            // CRITICAL: Number animation function that tracks previous values
+            // ========================================
+            function animateNumber(el, from, to, duration) {
+                const start = performance.now();
+
+                function tick(now) {
+                    const progress = Math.min(1, (now - start) / duration);
+                    const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+                    const currentValue = from + (to - from) * eased;
+                    el.textContent = Math.round(currentValue).toLocaleString('en-IN');
+                    if (progress < 1) {
+                        animationFrame = requestAnimationFrame(tick);
+                    }
+                }
+                requestAnimationFrame(tick);
+            }
+
+            function calculateValues(trees) {
+                return {
+                    co2: trees * CO2_PER_TREE,
+                    water: trees * WATER_PER_TREE,
+                    oxygen: trees * OXYGEN_PER_TREE
+                };
+            }
+
+            function updateDisplay(trees, animate = true) {
+                const values = calculateValues(trees);
+
+                // Update mobile stats (no animation)
+                mobileCo2.textContent = `${values.co2.toLocaleString('en-IN')} kg`;
+                mobileWater.textContent = `${values.water.toLocaleString('en-IN')} L`;
+                mobileOxygen.textContent = `${values.oxygen.toLocaleString('en-IN')} kg`;
+
+                if (animate) {
+                    // Animate from previous displayed values
+                    animateNumber(co2Value, currentDisplayedValues.co2, values.co2, ANIMATION_DURATION);
+                    animateNumber(waterValue, currentDisplayedValues.water, values.water, ANIMATION_DURATION);
+                    animateNumber(oxygenValue, currentDisplayedValues.oxygen, values.oxygen, ANIMATION_DURATION);
+
+                    // Update stored previous values after animation starts
+                    previousValues = { ...currentDisplayedValues };
+                } else {
+                    // No animation - just set values directly
+                    co2Value.textContent = values.co2.toLocaleString('en-IN');
+                    waterValue.textContent = values.water.toLocaleString('en-IN');
+                    oxygenValue.textContent = values.oxygen.toLocaleString('en-IN');
+                }
+
+                // Update stored current values
+                currentDisplayedValues = { ...values };
+
+                // Update oxygen caption with person count
+                const peopleCount = Math.round(values.oxygen / 118);
+                const personText = peopleCount === 1 ? 'person' : 'people';
+                oxygenCaption.textContent = `Oxygen released, roughly enough for ${peopleCount} ${personText}/yr`;
+            }
+
+            function drawTreeRings(trees) {
+                const svgNS = "http://www.w3.org/2000/svg";
+                const centerX = 175;
+                const centerY = 175;
+                const outerRadius = 140;
+                const innerRadius = 30;
+
+                treeRingsSvg.innerHTML = '';
+
+                // Background circle
+                const bgCircle = document.createElementNS(svgNS, 'circle');
+                bgCircle.setAttribute('cx', centerX);
+                bgCircle.setAttribute('cy', centerY);
+                bgCircle.setAttribute('r', outerRadius);
+                bgCircle.setAttribute('fill', '#E8F5E9');
+                treeRingsSvg.appendChild(bgCircle);
+
+                // Ring count (logarithmic scale as specified)
+                const ringCount = Math.min(9, Math.max(2, Math.round(2 + Math.log10(trees + 1) * 2.4)));
+                const ringStep = (outerRadius - innerRadius) / ringCount;
+
+                for (let i = 0; i < ringCount; i++) {
+                    const radius = outerRadius - (i * ringStep);
+                    const ring = document.createElementNS(svgNS, 'circle');
+                    ring.setAttribute('cx', centerX);
+                    ring.setAttribute('cy', centerY);
+                    ring.setAttribute('r', radius);
+                    ring.setAttribute('fill', 'none');
+                    ring.setAttribute('stroke', '#2E7D32');
+                    ring.setAttribute('stroke-width', '2');
+                    ring.setAttribute('opacity', '0.6');
+                    treeRingsSvg.appendChild(ring);
+                }
+
+                // Center circle
+                const centerCircle = document.createElementNS(svgNS, 'circle');
+                centerCircle.setAttribute('cx', centerX);
+                centerCircle.setAttribute('cy', centerY);
+                centerCircle.setAttribute('r', innerRadius);
+                centerCircle.setAttribute('fill', '#1B5E20');
+                treeRingsSvg.appendChild(centerCircle);
+
+                // Center text
+                const centerText = document.createElementNS(svgNS, 'text');
+                centerText.setAttribute('x', centerX);
+                centerText.setAttribute('y', centerY + 5);
+                centerText.setAttribute('text-anchor', 'middle');
+                centerText.setAttribute('fill', '#fff');
+                centerText.setAttribute('font-size', '14');
+                centerText.setAttribute('font-weight', '700');
+                centerText.textContent = trees >= 1000 ? `${(trees/1000).toFixed(1)}k` : trees;
+                treeRingsSvg.appendChild(centerText);
+
+                // Leader lines using trigonometry on fixed outer radius
+                // Angles: 250° (CO2 - top), 355° (Water - right), 110° (Oxygen - bottom)
+                const angles = [
+                    250 * (Math.PI / 180),  // CO2 - pointing up
+                    355 * (Math.PI / 180), // Water - pointing right
+                    110 * (Math.PI / 180)  // Oxygen - pointing down
+                ];
+
+                angles.forEach(angle => {
+                    const x1 = centerX + outerRadius * Math.cos(angle);
+                    const y1 = centerY + outerRadius * Math.sin(angle);
+                    const x2 = centerX + (outerRadius + 20) * Math.cos(angle);
+                    const y2 = centerY + (outerRadius + 20) * Math.sin(angle);
+
+                    const line = document.createElementNS(svgNS, 'line');
+                    line.setAttribute('x1', x1);
+                    line.setAttribute('y1', y1);
+                    line.setAttribute('x2', x2);
+                    line.setAttribute('y2', y2);
+                    line.setAttribute('stroke', '#2E7D32');
+                    line.setAttribute('stroke-width', '2');
+                    line.setAttribute('stroke-dasharray', '5, 5');
+                    line.setAttribute('opacity', '0.6');
+                    treeRingsSvg.appendChild(line);
+                });
+            }
+
+            function updatePresetButtons(trees) {
+                presetButtons.forEach(btn => {
+                    const value = parseInt(btn.dataset.value);
+                    btn.classList.toggle('active', value === trees);
+                });
+            }
+
+            function updateCalculator(trees) {
+                updateDisplay(trees, true);
+                drawTreeRings(trees);
+                updatePresetButtons(trees);
+            }
+
+            // Initialize
+            function init() {
+                const initialTrees = parseInt(treeInput.value) || 1;
+                updateDisplay(initialTrees, false); // No animation on initial load
+                drawTreeRings(initialTrees);
+                updatePresetButtons(initialTrees);
+
+                // Event listeners
+                decreaseBtn.addEventListener('click', () => {
+                    let currentValue = parseInt(treeInput.value) || 1;
+                    let newValue = Math.max(1, Math.min(10000, currentValue - 1));
+                    treeInput.value = newValue;
+                    updateCalculator(newValue);
+                });
+
+                increaseBtn.addEventListener('click', () => {
+                    let currentValue = parseInt(treeInput.value) || 1;
+                    let newValue = Math.max(1, Math.min(10000, currentValue + 1));
+                    treeInput.value = newValue;
+                    updateCalculator(newValue);
+                });
+
+                treeInput.addEventListener('input', () => {
+                    let value = parseInt(treeInput.value) || 1;
+                    value = Math.max(1, Math.min(10000, value));
+                    treeInput.value = value;
+                    updateCalculator(value);
+                });
+
+                treeInput.addEventListener('change', () => {
+                    let value = parseInt(treeInput.value) || 1;
+                    value = Math.max(1, Math.min(10000, value));
+                    treeInput.value = value;
+                    updateCalculator(value);
+                });
+
+                presetButtons.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const value = parseInt(btn.dataset.value);
+                        treeInput.value = value;
+                        updateCalculator(value);
+                    });
+                });
+            }
+
+            init();
+        })();
+
+        // ========================================
+        // SECTION 3: BAR RACE CHART
+        // (formerly Section 1, now Section 3 after Impact Calculator)
         // ========================================
         (function() {
             const container = document.getElementById('bar-race-container');
@@ -420,7 +416,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })();
 
         // ========================================
-        // SECTION 2: DONUT CHART
+        // SECTION 4: DONUT CHART
         // ========================================
         (function() {
             const canvas = document.getElementById('species-donut-chart');
@@ -482,7 +478,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })();
 
         // ========================================
-        // SECTION 3: BEFORE/AFTER SLIDER
+        // SECTION 5: BEFORE/AFTER SLIDER
         // ========================================
         (function() {
             const slider = document.getElementById('comparison-slider');
@@ -542,7 +538,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })();
 
         // ========================================
-        // SECTION 4: MILESTONE TIMELINE
+        // SECTION 6: MILESTONE TIMELINE
         // ========================================
         (function() {
             const timeline = document.getElementById('milestone-timeline');

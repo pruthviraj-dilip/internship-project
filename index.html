@@ -23,13 +23,9 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#history">History</a></li>
-                <li><a href="#calculator">Impact Calculator</a></li>
                 <li><a href="#statistics">Statistics</a></li>
                 <li><a href="#gallery">Gallery</a></li>
-<<<<<<< HEAD
-=======
                 <li><a href="#contact">Contact Us</a></li>
->>>>>>> 9608ccdaf32ac0ed0acc81ec2cdb90a559859c80
             </ul>
             <div class="menu-toggle">
                 <i class="fas fa-bars"></i>
@@ -330,111 +326,78 @@
         </div>
     </section>
 
-    <!-- Impact Calculator Section -->
-    <section id="calculator" class="calculator">
+    <!-- Statistics Section -->
+    <section id="statistics" class="statistics">
         <div class="container">
-            <!-- Intro -->
-            <div class="calculator-intro">
-                <h2>One Tree. Tons of CO2. Thousands of Litres of Water.</h2>
-                <p>You will be amazed to know, a single tree can absorb <span class="highlight">22 kg of CO₂</span> per year, save <span class="highlight">1,500 Litres of water</span>, and release <span class="highlight">118 kg of oxygen</span> — enough for one person to breathe.</p>
-            </div>
+            <h2 class="section-title">Our Statistics</h2>
+            <p class="section-subtitle"></p>
 
-            <!-- Calculator -->
-            <div class="calculator-panel">
-                <div class="calculator-card">
-                    <!-- Input -->
-                    <div class="input-section">
-                        <label class="input-label">How many trees would you like to plant?</label>
+            <!-- Section 1: Impact Calculator -->
+            <div class="stats-card" id="impact-calculator-section">
+                <h3 class="card-title">Impact Calculator</h3>
+                <div class="calculator-container">
+                    <!-- Left: Input Card -->
+                    <div class="calculator-input-card">
+                        <h3 class="calculator-heading">Number of Fully Grown Trees</h3>
                         <div class="stepper-wrapper">
-                            <button class="stepper-btn" id="decrease-btn">−</button>
-                            <input type="number" class="stepper-input" id="tree-input" value="1" min="1" max="10000">
-                            <button class="stepper-btn" id="increase-btn">+</button>
+                            <button class="stepper-btn" id="calc-decrease-btn">−</button>
+                            <input type="number" class="stepper-input" id="calc-tree-input" value="1" min="1" max="10000">
+                            <button class="stepper-btn" id="calc-increase-btn">+</button>
                         </div>
                         <div class="preset-buttons">
                             <button class="preset-btn" data-value="1">1</button>
                             <button class="preset-btn" data-value="10">10</button>
                             <button class="preset-btn" data-value="100">100</button>
-                            <button class="preset-btn" data-value="1000">1000</button>
+                            <button class="preset-btn" data-value="1000">1,000</button>
                         </div>
                     </div>
 
-                    <!-- Visualization -->
-                    <div class="visualization">
+                    <!-- Right: Circular Diagram with Stats -->
+                    <div class="calculator-diagram">
                         <div class="tree-rings-container">
-                            <svg class="tree-rings-svg" viewBox="0 0 350 350" id="tree-rings-svg"></svg>
-                            <div class="stat-label-item top">
-                                <span class="stat-value" id="co2-label">22</span>
-                                <span class="stat-unit">kg CO₂/year</span>
-                            </div>
-                            <div class="stat-label-item right">
-                                <span class="stat-value" id="water-label">1,500</span>
-                                <span class="stat-unit">Litres/year</span>
-                            </div>
-                            <div class="stat-label-item bottom">
-                                <span class="stat-value" id="oxygen-label">118</span>
-                                <span class="stat-unit">kg O₂/year</span>
-                            </div>
+                            <svg class="tree-rings-svg" viewBox="0 0 350 350" id="calc-tree-rings-svg"></svg>
                         </div>
-
-                        <!-- Results Grid -->
-                        <div class="results-grid">
-                            <div class="result-card">
-                                <div class="result-value" id="co2-result">22</div>
-                                <div class="result-unit">kg CO₂/year</div>
-                                <div class="result-label">CO₂ Absorbed</div>
+                        <div class="stat-readouts">
+                            <div class="stat-readout top">
+                                <span class="stat-value" id="calc-co2-value">22</span>
+                                <span class="stat-unit">kg</span>
+                                <span class="stat-caption">CO₂ pulled out of the air</span>
                             </div>
-                            <div class="result-card">
-                                <div class="result-value" id="water-result">1,500</div>
-                                <div class="result-unit">Litres/year</div>
-                                <div class="result-label">Water Saved</div>
+                            <div class="stat-readout right">
+                                <span class="stat-value" id="calc-water-value">1,500</span>
+                                <span class="stat-unit">L</span>
+                                <span class="stat-caption">Water held in the soil</span>
                             </div>
-                            <div class="result-card">
-                                <div class="result-value" id="oxygen-result">118</div>
-                                <div class="result-unit">kg/year</div>
-                                <div class="result-label">Oxygen Released</div>
-                            </div>
-                            <div class="result-card">
-                                <div class="result-value" id="people-result">1</div>
-                                <div class="result-unit">person</div>
-                                <div class="result-label">People Supported</div>
-                            </div>
-                        </div>
-
-                        <!-- Mobile Stats (hidden on desktop) -->
-                        <div class="mobile-stats">
-                            <div class="mobile-stat-item">
-                                <span class="stat-name">CO₂ Absorbed</span>
-                                <span class="stat-value" id="mobile-co2">22 kg/year</span>
-                            </div>
-                            <div class="mobile-stat-item">
-                                <span class="stat-name">Water Saved</span>
-                                <span class="stat-value" id="mobile-water">1,500 L/year</span>
-                            </div>
-                            <div class="mobile-stat-item">
-                                <span class="stat-name">Oxygen Released</span>
-                                <span class="stat-value" id="mobile-oxygen">118 kg/year</span>
-                            </div>
-                            <div class="mobile-stat-item">
-                                <span class="stat-name">People Supported</span>
-                                <span class="stat-value" id="mobile-people">1 person</span>
+                            <div class="stat-readout bottom">
+                                <span class="stat-value" id="calc-oxygen-value">118</span>
+                                <span class="stat-unit">kg</span>
+                                <span class="stat-caption" id="calc-oxygen-caption">Oxygen released, roughly enough for 1 person/yr</span>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Mobile Stats (hidden on desktop) -->
+                <div class="calculator-mobile-stats">
+                    <div class="mobile-stat-row">
+                        <span class="mobile-stat-name">CO₂</span>
+                        <span class="mobile-stat-value" id="mobile-calc-co2">22 kg</span>
+                    </div>
+                    <div class="mobile-stat-row">
+                        <span class="mobile-stat-name">Water</span>
+                        <span class="mobile-stat-value" id="mobile-calc-water">1,500 L</span>
+                    </div>
+                    <div class="mobile-stat-row">
+                        <span class="mobile-stat-name">Oxygen</span>
+                        <span class="mobile-stat-value" id="mobile-calc-oxygen">118 kg</span>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Statistics Section -->
-    <section id="statistics" class="statistics">
-        <div class="container">
-            <h2 class="section-title">Our Statistics</h2>
-            <p class="section-subtitle">Track our impact and journey through the years</p>
-
-            <!-- Section 1: Bar Race Chart -->
+            <!-- Section 3: Bar Race Chart -->
             <div class="stats-card" id="bar-race-section">
                 <h3 class="card-title">Trees Planted Per Year</h3>
-                <p class="card-description">Animated visualization of our yearly plantation progress</p>
+                <p class="card-description"></p>
                 <button class="play-btn" id="bar-race-play">
                     <i class="fas fa-play"></i> Play Animation
                 </button>
@@ -443,10 +406,10 @@
                 </div>
             </div>
 
-            <!-- Section 2: Donut Chart -->
+            <!-- Section 4: Donut Chart -->
             <div class="stats-card" id="donut-section">
                 <h3 class="card-title">Tree Species Distribution</h3>
-                <p class="card-description">Breakdown of tree species planted by our NGO</p>
+                <p class="card-description"></p>
                 <div class="donut-container">
                     <canvas id="species-donut-chart"></canvas>
                 </div>
@@ -455,10 +418,10 @@
                 </div>
             </div>
 
-            <!-- Section 3: Before/After Slider -->
+            <!-- Section 4: Before/After Slider -->
             <div class="stats-card" id="comparison-section">
                 <h3 class="card-title">Before & After</h3>
-                <p class="card-description">Drag the slider to see the transformation of our plantation sites</p>
+                <p class="card-description"></p>
                 <div class="comparison-container" id="comparison-slider">
                     <div class="comparison-before" id="comparison-before">
                         <span class="comparison-label">Before</span>
@@ -475,10 +438,10 @@
                 </div>
             </div>
 
-            <!-- Section 4: Milestone Timeline -->
+            <!-- Section 5: Milestone Timeline -->
             <div class="stats-card" id="timeline-section">
                 <h3 class="card-title">Our Milestones</h3>
-                <p class="card-description">Key moments in our journey towards a greener future</p>
+                <p class="card-description"></p>
                 <div class="milestone-timeline" id="milestone-timeline">
                     <!-- Timeline generated by JavaScript -->
                 </div>
@@ -490,7 +453,7 @@
     <section id="gallery" class="gallery">
         <div class="container">
             <h2 class="section-title">Our Gallery</h2>
-            <p class="section-subtitle">Capturing moments of our tree plantation journey</p>
+            
 
             <!-- Photo Gallery -->
             <div class="gallery-section">
