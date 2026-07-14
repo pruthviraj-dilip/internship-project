@@ -2524,3 +2524,300 @@ a {
         font-size: 0.8rem;
     }
 }
+
+/* ========================================
+   DIAL A TREE SECTION
+   ======================================== */
+.dial-a-tree {
+    padding: 80px 0;
+    background: var(--light-color);
+}
+
+.dial-a-tree .container {
+    max-width: 1100px;
+}
+
+/* Main Card */
+.dial-card {
+    background: #1B5E20;
+    border-radius: 16px;
+    padding: 30px 34px;
+    max-width: 620px;
+    margin: 0 auto;
+    color: var(--white);
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Single Step View */
+.dial-single-view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.dial-step-content {
+    flex: 1;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dial-step-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.dial-step-body {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Phone link in step 9 */
+.dial-phone-link {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: underline;
+}
+
+/* Controls Row */
+.dial-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Number Pills */
+.dial-pills {
+    display: flex;
+    gap: 8px;
+}
+
+.dial-pill {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.18);
+    color: var(--white);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dial-pill:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.dial-pill.active {
+    background: #000000;
+    color: var(--white);
+}
+
+/* View All Steps Button */
+.dial-view-all {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: opacity 0.3s ease;
+}
+
+.dial-view-all:hover {
+    opacity: 0.8;
+}
+
+/* Navigation Buttons */
+.dial-nav-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.dial-btn-back,
+.dial-btn-next {
+    padding: 10px 24px;
+    border-radius: 25px;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dial-btn-back {
+    background: transparent;
+    border: 2px solid var(--white);
+    color: var(--white);
+}
+
+.dial-btn-back:hover {
+    background: var(--white);
+    color: #1B5E20;
+}
+
+.dial-btn-next {
+    background: var(--white);
+    border: 2px solid var(--white);
+    color: #1B5E20;
+}
+
+.dial-btn-next:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+/* All Steps View */
+.dial-all-steps-view {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.dial-step-entry {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dial-step-entry:last-child {
+    border-bottom: none;
+}
+
+.dial-entry-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    color: var(--white);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.dial-entry-content {
+    flex: 1;
+}
+
+.dial-entry-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.dial-entry-body {
+    font-size: 1rem;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+/* Responsive - Dial a Tree */
+@media (max-width: 768px) {
+    .dial-a-tree {
+        padding: 60px 0;
+    }
+
+    .dial-card {
+        padding: 25px 20px;
+    }
+
+    .dial-step-title {
+        font-size: 1.5rem;
+    }
+
+    .dial-step-body {
+        font-size: 1rem;
+    }
+
+    .dial-controls {
+        gap: 15px;
+    }
+
+    .dial-pills {
+        gap: 6px;
+    }
+
+    .dial-pill {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+
+    .dial-btn-back,
+    .dial-btn-next {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .dial-card {
+        padding: 20px 16px;
+        min-height: 320px;
+    }
+
+    .dial-step-title {
+        font-size: 1.35rem;
+    }
+
+    .dial-step-body {
+        font-size: 0.95rem;
+    }
+
+    .dial-controls {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .dial-pills {
+        gap: 5px;
+    }
+
+    .dial-pill {
+        width: 26px;
+        height: 26px;
+        font-size: 0.75rem;
+    }
+
+    .dial-view-all {
+        font-size: 0.9rem;
+    }
+
+    .dial-btn-back,
+    .dial-btn-next {
+        padding: 7px 16px;
+        font-size: 0.85rem;
+    }
+
+    /* Allow wrapping on very narrow screens */
+    .dial-controls {
+        flex-wrap: wrap;
+    }
+}
