@@ -1559,7 +1559,7 @@ a {
 
   .presets{
     display:flex;
-    gap:16px;
+    gap:15px;
     margin-top:18px;
     flex-wrap:wrap;
   }
