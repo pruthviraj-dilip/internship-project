@@ -326,73 +326,59 @@
         </div>
     </section>
 
-    <!-- Statistics Section -->
+       <!-- Statistics Section -->
     <section id="statistics" class="statistics">
         <div class="container">
             <h2 class="section-title">Our Statistics</h2>
             <p class="section-subtitle"></p>
 
-            <!-- Section 1: Impact Calculator -->
-            <div class="stats-card" id="impact-calculator-section">
-                <h3 class="card-title">Impact Calculator</h3>
-                <div class="calculator-container">
-                    <!-- Left: Input Card -->
-                    <div class="calculator-input-card">
-                        <h3 class="calculator-heading">Number of Fully Grown Trees</h3>
-                        <div class="stepper-wrapper">
-                            <button class="stepper-btn" id="calc-decrease-btn">−</button>
-                            <input type="number" class="stepper-input" id="calc-tree-input" value="1" min="1" max="10000">
-                            <button class="stepper-btn" id="calc-increase-btn">+</button>
-                        </div>
-                        <div class="preset-buttons">
-                            <button class="preset-btn" data-value="1">1</button>
-                            <button class="preset-btn" data-value="10">10</button>
-                            <button class="preset-btn" data-value="100">100</button>
-                            <button class="preset-btn" data-value="1000">1,000</button>
-                        </div>
-                    </div>
+            <!-- impact calculator -->
+                <div class="panel">
+             <div class="calc">
 
-                    <!-- Right: Circular Diagram with Stats -->
-                    <div class="calculator-diagram">
-                        <div class="tree-rings-container">
-                            <svg class="tree-rings-svg" viewBox="0 0 350 350" id="calc-tree-rings-svg"></svg>
-                        </div>
-                        <div class="stat-readouts">
-                            <div class="stat-readout top">
-                                <span class="stat-value" id="calc-co2-value">22</span>
-                                <span class="stat-unit">kg</span>
-                                <span class="stat-caption">CO₂ pulled out of the air</span>
-                            </div>
-                            <div class="stat-readout right">
-                                <span class="stat-value" id="calc-water-value">1,500</span>
-                                <span class="stat-unit">L</span>
-                                <span class="stat-caption">Water held in the soil</span>
-                            </div>
-                            <div class="stat-readout bottom">
-                                <span class="stat-value" id="calc-oxygen-value">118</span>
-                                <span class="stat-unit">kg</span>
-                                <span class="stat-caption" id="calc-oxygen-caption">Oxygen released, roughly enough for 1 person/yr</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <div class="input-card">
+               <p class="q">How many trees would you plant?</p>
+              <div class="stepper">
+              <button id="dec" aria-label="Decrease">&minus;</button>
+                <input id="treeInput" type="number" min="1" value="1" inputmode="numeric">
+                <button id="inc" aria-label="Increase">&plus;</button>
+              </div>
+            <div class="stepper-caption">Number of trees</div>
+              <div class="presets">
+             <button data-val="1">1</button>
+             <button data-val="10">10</button>
+            <button data-val="100">100</button>
+           <button data-val="1000">1,000</button>
+      </div>
+    </div>
 
-                <!-- Mobile Stats (hidden on desktop) -->
-                <div class="calculator-mobile-stats">
-                    <div class="mobile-stat-row">
-                        <span class="mobile-stat-name">CO₂</span>
-                        <span class="mobile-stat-value" id="mobile-calc-co2">22 kg</span>
-                    </div>
-                    <div class="mobile-stat-row">
-                        <span class="mobile-stat-name">Water</span>
-                        <span class="mobile-stat-value" id="mobile-calc-water">1,500 L</span>
-                    </div>
-                    <div class="mobile-stat-row">
-                        <span class="mobile-stat-name">Oxygen</span>
-                        <span class="mobile-stat-value" id="mobile-calc-oxygen">118 kg</span>
-                    </div>
+                <div class="diagram">
+                <svg viewBox="0 0 420 340" aria-hidden="true">
+                 <g id="rings" transform="translate(210,170)"></g>
+                 <!-- leader lines: computed once, anchored exactly on the fixed outer ring radius -->
+                 <line class="leader-line" id="line-co2"   stroke="#8FAE90" stroke-width="1" stroke-dasharray="2 3"/>
+                 <line class="leader-line" id="line-water" stroke="#8FAE90" stroke-width="1" stroke-dasharray="2 3"/>
+             <line class="leader-line" id="line-oxy"   stroke="#8FAE90" stroke-width="1" stroke-dasharray="2 3"/>
+               </svg>
+
+                 <div class="readout r-co2" id="lbl-co2">
+                  <div><span class="num" id="outCo2">22</span><span class="unit">kg</span></div>
+                <div class="cap">CO&#8322; pulled out of the air</div>
+                  </div>
+
+                 <div class="readout r-water" id="lbl-water">
+                <div><span class="num" id="outWater">1,500</span><span class="unit">L</span></div>
+              <div class="cap">Water held in the soil</div>
+             </div>
+
+                 <div class="readout r-oxy" id="lbl-oxy">
+                  <div><span class="num" id="outOxy">118</span><span class="unit">kg</span></div>
+                   <div class="cap">Oxygen released, roughly enough for <span id="outPeople">1</span> <span id="outPersonWord">person</span>/yr</div>
+                  </div>
+                     </div>
+
+                   </div>
                 </div>
-            </div>
 
             <!-- Section 3: Bar Race Chart -->
             <div class="stats-card" id="bar-race-section">
@@ -405,6 +391,7 @@
                     <!-- Bar race bars will be generated by JavaScript -->
                 </div>
             </div>
+            
 
             <!-- Section 4: Donut Chart -->
             <div class="stats-card" id="donut-section">

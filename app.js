@@ -104,243 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!statisticsSection) return;
 
         // ========================================
-        // IMPACT CALCULATOR
-        // ========================================
-        (function() {
-            const calcSection = document.getElementById('impact-calculator-section');
-            if (!calcSection) return;
-
-            // Constants
-            const CO2_PER_TREE = 22;
-            const WATER_PER_TREE = 1500;
-            const OXYGEN_PER_TREE = 118;
-            const ANIMATION_DURATION = 500;
-
-            // DOM Elements
-            const treeInput = document.getElementById('calc-tree-input');
-            const decreaseBtn = document.getElementById('calc-decrease-btn');
-            const increaseBtn = document.getElementById('calc-increase-btn');
-            const presetButtons = document.querySelectorAll('#impact-calculator-section .preset-btn');
-            const treeRingsSvg = document.getElementById('calc-tree-rings-svg');
-
-            // Result elements
-            const co2Value = document.getElementById('calc-co2-value');
-            const waterValue = document.getElementById('calc-water-value');
-            const oxygenValue = document.getElementById('calc-oxygen-value');
-            const oxygenCaption = document.getElementById('calc-oxygen-caption');
-
-            // Mobile stat elements
-            const mobileCo2 = document.getElementById('mobile-calc-co2');
-            const mobileWater = document.getElementById('mobile-calc-water');
-            const mobileOxygen = document.getElementById('mobile-calc-oxygen');
-
-            // Track previous values for smooth animation
-            let previousValues = { co2: 0, water: 0, oxygen: 0 };
-            let currentDisplayedValues = { co2: 0, water: 0, oxygen: 0 };
-            let animationFrame = null;
-
-            // ========================================
-            // CRITICAL: Number animation function that tracks previous values
-            // ========================================
-            function animateNumber(el, from, to, duration) {
-                const start = performance.now();
-
-                function tick(now) {
-                    const progress = Math.min(1, (now - start) / duration);
-                    const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-                    const currentValue = from + (to - from) * eased;
-                    el.textContent = Math.round(currentValue).toLocaleString('en-IN');
-                    if (progress < 1) {
-                        animationFrame = requestAnimationFrame(tick);
-                    }
-                }
-                requestAnimationFrame(tick);
-            }
-
-            function calculateValues(trees) {
-                return {
-                    co2: trees * CO2_PER_TREE,
-                    water: trees * WATER_PER_TREE,
-                    oxygen: trees * OXYGEN_PER_TREE
-                };
-            }
-
-            function updateDisplay(trees, animate = true) {
-                const values = calculateValues(trees);
-
-                // Update mobile stats (no animation)
-                mobileCo2.textContent = `${values.co2.toLocaleString('en-IN')} kg`;
-                mobileWater.textContent = `${values.water.toLocaleString('en-IN')} L`;
-                mobileOxygen.textContent = `${values.oxygen.toLocaleString('en-IN')} kg`;
-
-                if (animate) {
-                    // Animate from previous displayed values
-                    animateNumber(co2Value, currentDisplayedValues.co2, values.co2, ANIMATION_DURATION);
-                    animateNumber(waterValue, currentDisplayedValues.water, values.water, ANIMATION_DURATION);
-                    animateNumber(oxygenValue, currentDisplayedValues.oxygen, values.oxygen, ANIMATION_DURATION);
-
-                    // Update stored previous values after animation starts
-                    previousValues = { ...currentDisplayedValues };
-                } else {
-                    // No animation - just set values directly
-                    co2Value.textContent = values.co2.toLocaleString('en-IN');
-                    waterValue.textContent = values.water.toLocaleString('en-IN');
-                    oxygenValue.textContent = values.oxygen.toLocaleString('en-IN');
-                }
-
-                // Update stored current values
-                currentDisplayedValues = { ...values };
-
-                // Update oxygen caption with person count
-                const peopleCount = Math.round(values.oxygen / 118);
-                const personText = peopleCount === 1 ? 'person' : 'people';
-                oxygenCaption.textContent = `Oxygen released, roughly enough for ${peopleCount} ${personText}/yr`;
-            }
-
-            function drawTreeRings(trees) {
-                const svgNS = "http://www.w3.org/2000/svg";
-                const centerX = 175;
-                const centerY = 175;
-                const outerRadius = 140;
-                const innerRadius = 30;
-
-                treeRingsSvg.innerHTML = '';
-
-                // Background circle
-                const bgCircle = document.createElementNS(svgNS, 'circle');
-                bgCircle.setAttribute('cx', centerX);
-                bgCircle.setAttribute('cy', centerY);
-                bgCircle.setAttribute('r', outerRadius);
-                bgCircle.setAttribute('fill', '#E8F5E9');
-                treeRingsSvg.appendChild(bgCircle);
-
-                // Ring count (logarithmic scale as specified)
-                const ringCount = Math.min(9, Math.max(2, Math.round(2 + Math.log10(trees + 1) * 2.4)));
-                const ringStep = (outerRadius - innerRadius) / ringCount;
-
-                for (let i = 0; i < ringCount; i++) {
-                    const radius = outerRadius - (i * ringStep);
-                    const ring = document.createElementNS(svgNS, 'circle');
-                    ring.setAttribute('cx', centerX);
-                    ring.setAttribute('cy', centerY);
-                    ring.setAttribute('r', radius);
-                    ring.setAttribute('fill', 'none');
-                    ring.setAttribute('stroke', '#2E7D32');
-                    ring.setAttribute('stroke-width', '2');
-                    ring.setAttribute('opacity', '0.6');
-                    treeRingsSvg.appendChild(ring);
-                }
-
-                // Center circle
-                const centerCircle = document.createElementNS(svgNS, 'circle');
-                centerCircle.setAttribute('cx', centerX);
-                centerCircle.setAttribute('cy', centerY);
-                centerCircle.setAttribute('r', innerRadius);
-                centerCircle.setAttribute('fill', '#1B5E20');
-                treeRingsSvg.appendChild(centerCircle);
-
-                // Center text
-                const centerText = document.createElementNS(svgNS, 'text');
-                centerText.setAttribute('x', centerX);
-                centerText.setAttribute('y', centerY + 5);
-                centerText.setAttribute('text-anchor', 'middle');
-                centerText.setAttribute('fill', '#fff');
-                centerText.setAttribute('font-size', '14');
-                centerText.setAttribute('font-weight', '700');
-                centerText.textContent = trees >= 1000 ? `${(trees/1000).toFixed(1)}k` : trees;
-                treeRingsSvg.appendChild(centerText);
-
-                // Leader lines using trigonometry on fixed outer radius
-                // Angles: 250° (CO2 - top), 355° (Water - right), 110° (Oxygen - bottom)
-                const angles = [
-                    250 * (Math.PI / 180),  // CO2 - pointing up
-                    355 * (Math.PI / 180), // Water - pointing right
-                    110 * (Math.PI / 180)  // Oxygen - pointing down
-                ];
-
-                angles.forEach(angle => {
-                    const x1 = centerX + outerRadius * Math.cos(angle);
-                    const y1 = centerY + outerRadius * Math.sin(angle);
-                    const x2 = centerX + (outerRadius + 20) * Math.cos(angle);
-                    const y2 = centerY + (outerRadius + 20) * Math.sin(angle);
-
-                    const line = document.createElementNS(svgNS, 'line');
-                    line.setAttribute('x1', x1);
-                    line.setAttribute('y1', y1);
-                    line.setAttribute('x2', x2);
-                    line.setAttribute('y2', y2);
-                    line.setAttribute('stroke', '#2E7D32');
-                    line.setAttribute('stroke-width', '2');
-                    line.setAttribute('stroke-dasharray', '5, 5');
-                    line.setAttribute('opacity', '0.6');
-                    treeRingsSvg.appendChild(line);
-                });
-            }
-
-            function updatePresetButtons(trees) {
-                presetButtons.forEach(btn => {
-                    const value = parseInt(btn.dataset.value);
-                    btn.classList.toggle('active', value === trees);
-                });
-            }
-
-            function updateCalculator(trees) {
-                updateDisplay(trees, true);
-                drawTreeRings(trees);
-                updatePresetButtons(trees);
-            }
-
-            // Initialize
-            function init() {
-                const initialTrees = parseInt(treeInput.value) || 1;
-                updateDisplay(initialTrees, false); // No animation on initial load
-                drawTreeRings(initialTrees);
-                updatePresetButtons(initialTrees);
-
-                // Event listeners
-                decreaseBtn.addEventListener('click', () => {
-                    let currentValue = parseInt(treeInput.value) || 1;
-                    let newValue = Math.max(1, Math.min(10000, currentValue - 1));
-                    treeInput.value = newValue;
-                    updateCalculator(newValue);
-                });
-
-                increaseBtn.addEventListener('click', () => {
-                    let currentValue = parseInt(treeInput.value) || 1;
-                    let newValue = Math.max(1, Math.min(10000, currentValue + 1));
-                    treeInput.value = newValue;
-                    updateCalculator(newValue);
-                });
-
-                treeInput.addEventListener('input', () => {
-                    let value = parseInt(treeInput.value) || 1;
-                    value = Math.max(1, Math.min(10000, value));
-                    treeInput.value = value;
-                    updateCalculator(value);
-                });
-
-                treeInput.addEventListener('change', () => {
-                    let value = parseInt(treeInput.value) || 1;
-                    value = Math.max(1, Math.min(10000, value));
-                    treeInput.value = value;
-                    updateCalculator(value);
-                });
-
-                presetButtons.forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        const value = parseInt(btn.dataset.value);
-                        treeInput.value = value;
-                        updateCalculator(value);
-                    });
-                });
-            }
-
-            init();
-        })();
-
-        // ========================================
         // SECTION 3: BAR RACE CHART
-        // (formerly Section 1, now Section 3 after Impact Calculator)
         // ========================================
         (function() {
             const container = document.getElementById('bar-race-container');
@@ -894,3 +658,132 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log('JavaScript loaded successfully!');
 });
+
+// impact-calculator
+const CO2_PER_TREE = 22;
+  const WATER_PER_TREE = 1500;
+  const OXY_PER_TREE = 118;
+  const OXY_PER_PERSON = 118;
+
+  const VB_W = 420, VB_H = 340;
+  const CX = 210, CY = 170;
+  const OUTER_R = 108; // fixed boundary radius -- rings always grow/pack inside this, so leader lines never need to move
+
+  // anchor angles (deg, 0=right/east, 90=down/south, 180=left/west, 270=up/north)
+  const ANCHORS = {
+    co2:   250,
+    water: 355,
+    oxy:   110
+  };
+  const LEADER_LEN = 46; // how far the line extends past the circle edge
+
+  function pointOnCircle(angleDeg, r){
+    const rad = angleDeg * Math.PI / 180;
+    return { x: CX + r * Math.cos(rad), y: CY + r * Math.sin(rad) };
+  }
+
+  function setupLeaders(){
+    Object.entries(ANCHORS).forEach(([key, angle]) => {
+      const inner = pointOnCircle(angle, OUTER_R);
+      const outer = pointOnCircle(angle, OUTER_R + LEADER_LEN);
+      const line = document.getElementById('line-' + key);
+      line.setAttribute('x1', inner.x);
+      line.setAttribute('y1', inner.y);
+      line.setAttribute('x2', outer.x);
+      line.setAttribute('y2', outer.y);
+
+      const label = document.getElementById('lbl-' + key);
+      label.style.left = (outer.x / VB_W * 100) + '%';
+      label.style.top = (outer.y / VB_H * 100) + '%';
+    });
+  }
+
+  const input = document.getElementById('treeInput');
+  const svgRings = document.getElementById('rings');
+  const outCo2 = document.getElementById('outCo2');
+  const outWater = document.getElementById('outWater');
+  const outOxy = document.getElementById('outOxy');
+  const outPeople = document.getElementById('outPeople');
+  const outPersonWord = document.getElementById('outPersonWord');
+
+  const ringColors = ['#1B5E20', '#2E7D32', '#43A047', '#81C784'];
+
+  function fmt(n){ return Math.round(n).toLocaleString('en-IN'); }
+
+  function animateNumber(el, from, to, duration=500){
+    const start = performance.now();
+    function tick(now){
+      const p = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(from + (to - from) * eased);
+      if(p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function drawRings(n){
+    svgRings.innerHTML = '';
+    const ringCount = Math.min(9, Math.max(2, Math.round(2 + Math.log10(n + 1) * 2.4)));
+    for(let i = ringCount; i >= 1; i--){
+      const r = (OUTER_R / ringCount) * i;
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('cx', 0);
+      circle.setAttribute('cy', 0);
+      circle.setAttribute('r', r);
+      circle.setAttribute('fill', 'none');
+      circle.setAttribute('stroke', ringColors[i % ringColors.length]);
+      circle.setAttribute('stroke-width', i === ringCount ? 2 : 1);
+      circle.setAttribute('opacity', 0.3 + (0.6 * (i / ringCount)));
+      circle.style.transition = 'r 0.5s ease, opacity 0.5s ease';
+      svgRings.appendChild(circle);
+    }
+    const core = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    core.setAttribute('cx', 0);
+    core.setAttribute('cy', 0);
+    core.setAttribute('r', 5);
+    core.setAttribute('fill', '#1B5E20');
+    svgRings.appendChild(core);
+  }
+
+  let prevCo2 = 0, prevWater = 0, prevOxy = 0, prevPeople = 0;
+
+  function update(){
+    let n = parseInt(input.value, 10);
+    if(isNaN(n) || n < 1) n = 1;
+    input.value = n;
+
+    const co2 = n * CO2_PER_TREE;
+    const water = n * WATER_PER_TREE;
+    const oxy = n * OXY_PER_TREE;
+    const people = oxy / OXY_PER_PERSON;
+
+    animateNumber(outCo2, prevCo2, co2);
+    animateNumber(outWater, prevWater, water);
+    animateNumber(outOxy, prevOxy, oxy);
+    animateNumber(outPeople, prevPeople, people);
+    outPersonWord.textContent = Math.round(people) === 1 ? 'person' : 'people';
+
+    prevCo2 = co2; prevWater = water; prevOxy = oxy; prevPeople = people;
+
+    drawRings(n);
+  }
+
+  document.getElementById('inc').addEventListener('click', () => {
+    input.value = (parseInt(input.value,10) || 0) + 1;
+    update();
+  });
+  document.getElementById('dec').addEventListener('click', () => {
+    input.value = Math.max(1, (parseInt(input.value,10) || 1) - 1);
+    update();
+  });
+  input.addEventListener('input', update);
+  document.querySelectorAll('.presets button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      input.value = btn.dataset.val;
+      update();
+    });
+  });
+
+  setupLeaders();
+  drawRings(1);
+  update();
