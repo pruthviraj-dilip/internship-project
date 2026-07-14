@@ -2085,7 +2085,8 @@ a {
    ======================================== */
 .contact-page {
     padding: 80px 0;
-    background: var(--white);
+    /* background: var(--white); */
+     background: var(--light-color);
 }
 
 .contact-page .container {
@@ -2105,12 +2106,13 @@ a {
 .contact-form-column {
     flex: 1;
     padding: 50px 40px;
+    border-right: 1.5px solid  lightgrey;
 }
 
 /* Right Column - Contact Info */
 .contact-info-column {
     flex: 1;
-    background: var(--light-color);
+    /* background: var(--light-color); */
     padding: 50px 40px;
     display: flex;
     flex-direction: column;
@@ -2530,7 +2532,7 @@ a {
    ======================================== */
 .dial-a-tree {
     padding: 80px 0;
-    background: var(--light-color);
+   
 }
 
 .dial-a-tree .container {
