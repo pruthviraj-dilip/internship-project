@@ -694,12 +694,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'festival': {
                 title: 'Festival Celebrations',
                 description: 'Celebrating Diwali, Holi and other festivals with locals.',
-                icon: 'fa-burst'
+                icon: 'fa-party-horn'
             },
             'water': {
                 title: 'Clean Drinking Water',
                 description: 'Drinking water installed with the help of locals, without any government fund or CSR fund.',
-                icon: 'fa-water'
+                icon: 'fa-droplet'
             }
         };
 
