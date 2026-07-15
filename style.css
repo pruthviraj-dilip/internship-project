@@ -1861,8 +1861,10 @@ a {
     align-items: center;
     position: relative;
     flex: 1;
+    padding: 40px 0;
 }
 
+/* BUG 1 FIX: Dots must sit centered on the horizontal line */
 .milestone-dot {
     width: 20px;
     height: 20px;
@@ -1871,25 +1873,61 @@ a {
     border-radius: 50%;
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 2;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-.milestone-item:nth-child(odd) .milestone-dot {
-    top: auto;
-    bottom: -30px;
-    transform: none;
+/* BUG 2 FIX: Alternating year/description positioning */
+/* Odd milestones (1,3,5): year above, description below */
+.milestone-item.milestone-odd .milestone-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
 }
 
-.milestone-item:nth-child(odd) .milestone-content {
-    margin-bottom: 50px;
-    margin-top: auto;
+.milestone-item.milestone-odd .milestone-year {
+    position: absolute;
+    bottom: calc(50% + 15px);
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0;
 }
 
-.milestone-item:nth-child(even) .milestone-content {
-    margin-top: 50px;
-    margin-bottom: auto;
+.milestone-item.milestone-odd .milestone-description {
+    position: absolute;
+    top: calc(50% + 15px);
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
+}
+
+/* Even milestones (2,4): description above, year below */
+.milestone-item.milestone-even .milestone-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+}
+
+.milestone-item.milestone-even .milestone-year {
+    position: absolute;
+    top: calc(50% + 15px);
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0;
+}
+
+.milestone-item.milestone-even .milestone-description {
+    position: absolute;
+    bottom: calc(50% + 15px);
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
 }
 
 .milestone-content {
@@ -1897,7 +1935,6 @@ a {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 140px;
 }
 
 .milestone-year {
@@ -1905,13 +1942,14 @@ a {
     font-weight: 700;
     font-size: 1.1rem;
     color: var(--dark-color);
-    margin-bottom: 8px;
+    white-space: nowrap;
 }
 
 .milestone-description {
     font-size: 0.85rem;
     color: #5B6B5C;
     line-height: 1.4;
+    white-space: nowrap;
 }
 
 /* Mobile Timeline */

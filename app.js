@@ -354,7 +354,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             milestones.forEach((milestone, index) => {
                 const item = document.createElement('div');
-                item.className = 'milestone-item';
+                // Alternating pattern: odd milestones (1,3,5) have year above/description below
+                // even milestones (2,4) have description above/year below
+                const isOdd = (index + 1) % 2 === 1;
+                item.className = isOdd ? 'milestone-item milestone-odd' : 'milestone-item milestone-even';
                 item.innerHTML = `
                     <div class="milestone-dot"></div>
                     <div class="milestone-content">
