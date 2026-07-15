@@ -358,8 +358,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 item.innerHTML = `
                     <div class="milestone-dot"></div>
                     <div class="milestone-content">
-                        <div class="milestone-year">${milestone.year}</div>
-                        <div class="milestone-description">${milestone.description}</div>
+                        <span class="milestone-year">${milestone.year}</span>
+                        <span class="milestone-description">${milestone.description}</span>
                     </div>
                 `;
                 itemsContainer.appendChild(item);

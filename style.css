@@ -1885,17 +1885,11 @@ a {
 .milestone-item:nth-child(odd) .milestone-content {
     margin-bottom: 50px;
     margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .milestone-item:nth-child(even) .milestone-content {
     margin-top: 50px;
     margin-bottom: auto;
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
 }
 
 .milestone-content {
@@ -1911,14 +1905,7 @@ a {
     font-weight: 700;
     font-size: 1.1rem;
     color: var(--dark-color);
-}
-
-.milestone-item:nth-child(odd) .milestone-year {
     margin-bottom: 8px;
-}
-
-.milestone-item:nth-child(even) .milestone-year {
-    margin-top: 8px;
 }
 
 .milestone-description {
