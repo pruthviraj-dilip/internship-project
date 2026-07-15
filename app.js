@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Placeholder data - REPLACE with real NGO record later
             const treeData = [
-                { year: 2020, trees: 1000 },
+                { year: 2000, trees: 1000 },
                 { year: 2005, trees: 4000 },
                 { year: 2010, trees: 8000 },
                 { year: 2015, trees: 13000 },
@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             'tree-library': {
                 title: 'Tree Academy (Tree Library)',
-                description: 'Open every weekend for local students, covering 40+ native species. Free entry for school groups.',
+                description: 'A growing collection of native tree knowledge, built for anyone curious enough to ask a question.',
                 icon: 'fa-book-open'
             },
             'solar': {
@@ -458,7 +458,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'festival': {
                 title: 'Festival Celebrations',
                 description: 'Celebrating Diwali, Holi and other festivals with locals.',
-                icon: 'fa-party-horn'
+                icon: 'fa-champagne-glasses'
             },
             'water': {
                 title: 'Clean Drinking Water',
@@ -658,187 +658,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log('JavaScript loaded successfully!');
 });
-
-/* ========================================
-   DIAL A TREE SECTION - Step Navigation
-   ======================================== */
-(function initDialATree() {
-    const dialSection = document.getElementById('dialatree');
-    if (!dialSection) return;
-
-    // Step data
-    const steps = [
-        {
-            title: "Call the number",
-            body: "Dial the number listed on this page. Tell us you'd like to plant a tree — no forms, no advance booking required."
-        },
-        {
-            title: "We schedule a visit",
-            body: "Our team arranges a convenient time to come to your home or the location you choose."
-        },
-        {
-            title: "Pick your tree",
-            body: "Our team arrives and asks which tree or sapling you'd like — a species with personal meaning, or one we recommend for your soil and space."
-        },
-        {
-            title: "We dig the hole",
-            body: "Our team prepares the ground at the chosen spot, right at your location."
-        },
-        {
-            title: "The tree is planted",
-            body: "Your chosen tree or seed is planted directly into the prepared ground."
-        },
-        {
-            title: "Watering",
-            body: "The newly planted tree is watered thoroughly to help it take root."
-        },
-        {
-            title: "Natural fertilizer & pesticide",
-            body: "We apply organic fertilizer and pesticide prepared in-house at Nisarg Seva Samiti — no harsh chemicals."
-        },
-        {
-            title: "Ground is closed",
-            body: "The soil is closed back over the roots, and your tree is left ready to grow."
-        },
-        {
-            title: "Ready to call us",
-            body: "Call us on <a href=\"tel:9822523895\" class=\"dial-phone-link\">9822523895</a>."
-        }
-    ];
-
-    let currentStep = 1;
-    let previousStep = 1;
-    let isAllStepsView = false;
-
-    // DOM elements
-    const singleView = dialSection.querySelector('.dial-single-view');
-    const allStepsView = dialSection.querySelector('.dial-all-steps-view');
-    const stepTitle = dialSection.querySelector('.dial-step-title');
-    const stepBody = dialSection.querySelector('.dial-step-body');
-    const pills = dialSection.querySelectorAll('.dial-pill');
-    const viewAllBtn = dialSection.querySelector('.dial-view-all');
-    const backBtn = dialSection.querySelector('.dial-btn-back');
-    const nextBtn = dialSection.querySelector('.dial-btn-next');
-    const navButtons = dialSection.querySelector('.dial-nav-buttons');
-
-    // Function to update single step view
-    function updateStep(stepNum) {
-        currentStep = stepNum;
-        const stepData = steps[stepNum - 1];
-
-        stepTitle.textContent = stepData.title;
-        stepBody.innerHTML = stepData.body;
-
-        // Update pill highlights
-        pills.forEach((pill, index) => {
-            if (index + 1 === stepNum) {
-                pill.classList.add('active');
-            } else {
-                pill.classList.remove('active');
-            }
-        });
-
-        // Step-specific visibility
-        // Step 1: hide Back button
-        if (stepNum === 1) {
-            backBtn.style.display = 'none';
-        } else {
-            backBtn.style.display = 'block';
-        }
-
-        // Step 9: hide pills and view all, change Next to "Start over"
-        if (stepNum === 9) {
-            dialSection.querySelector('.dial-pills').style.display = 'none';
-            viewAllBtn.style.display = 'none';
-            nextBtn.textContent = 'Start over';
-        } else {
-            dialSection.querySelector('.dial-pills').style.display = 'flex';
-            viewAllBtn.style.display = 'block';
-            nextBtn.textContent = 'Next';
-        }
-    }
-
-    // Function to show all steps view
-    function showAllSteps() {
-        previousStep = currentStep;
-        isAllStepsView = true;
-
-        // Build all steps content
-        let allStepsHTML = '';
-        steps.forEach((step, index) => {
-            let bodyContent = step.body;
-            // Replace phone link in step 9
-            if (index === 8) {
-                bodyContent = bodyContent.replace(
-                    '<a href="tel:9822523895" class="dial-phone-link">9822523895</a>',
-                    '<a href="tel:9822523895" class="dial-phone-link">9822523895</a>'
-                );
-            }
-            allStepsHTML += `
-                <div class="dial-step-entry">
-                    <span class="dial-entry-number">${index + 1}</span>
-                    <div class="dial-entry-content">
-                        <h3 class="dial-entry-title">${step.title}</h3>
-                        <p class="dial-entry-body">${bodyContent}</p>
-                    </div>
-                </div>
-            `;
-        });
-        allStepsView.innerHTML = allStepsHTML;
-
-        singleView.style.display = 'none';
-        allStepsView.style.display = 'block';
-        viewAllBtn.textContent = 'View step by step';
-    }
-
-    // Function to show single step view
-    function showSingleStep() {
-        isAllStepsView = false;
-        singleView.style.display = 'block';
-        allStepsView.style.display = 'none';
-        viewAllBtn.textContent = 'View all steps';
-        updateStep(previousStep);
-    }
-
-    // Pill click handlers
-    pills.forEach(pill => {
-        pill.addEventListener('click', () => {
-            const step = parseInt(pill.dataset.step);
-            updateStep(step);
-        });
-    });
-
-    // View all toggle handler
-    viewAllBtn.addEventListener('click', () => {
-        if (isAllStepsView) {
-            showSingleStep();
-        } else {
-            showAllSteps();
-        }
-    });
-
-    // Back button handler
-    backBtn.addEventListener('click', () => {
-        if (currentStep > 1) {
-            updateStep(currentStep - 1);
-        }
-    });
-
-    // Next button handler
-    nextBtn.addEventListener('click', () => {
-        if (currentStep === 9) {
-            // Start over - go to step 1
-            updateStep(1);
-        } else {
-            updateStep(currentStep + 1);
-        }
-    });
-
-    // Initialize first step
-    updateStep(1);
-
-    console.log('✨ Dial a Tree section initialized');
-})();
 
 // impact-calculator
 const CO2_PER_TREE = 22;

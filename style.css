@@ -249,7 +249,7 @@ a {
 }
 
 .timeline-content {
-    background: var(--light-color);
+    background: #3D2817;
     padding: 20px 25px;
     border-radius: 10px;
     /* Fix text alignment - equal lines */
@@ -260,14 +260,14 @@ a {
 }
 
 .timeline-content h3 {
-    color: var(--primary-color);
+    color: #D98F3B;
     font-size: 1.5rem;
     margin-bottom: 10px;
     text-align: left; /* Keep heading left-aligned */
 }
 
 .timeline-content p {
-    color: #555;
+    color: #FBF6EC;
     text-align: justify;
     line-height: 1.8;
     margin-bottom: 10px;
@@ -324,16 +324,6 @@ a {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    /* ============================================
-       📍 PLACE YOUR VINTAGE MAP IMAGE LINK HERE
-
-       If you prefer using CSS background-image instead of <img> tag,
-       you can comment out the <img> tag above and uncomment below:
-
-       background-image: url("YOUR_VINTAGE_MAP_IMAGE_URL_HERE");
-       background-size: cover;
-       background-position: center;
-       ============================================ */
     opacity: 0.4;
     transform: translateY(0);
     will-change: transform;
@@ -422,63 +412,6 @@ a {
     background: linear-gradient(135deg, #8B5A2B 0%, #5D4037 100%);
     border: 2px solid #A1887F;
     box-shadow: 0 2px 8px rgba(60, 40, 20, 0.4);
-}
-
-.timeline-content {
-    background: linear-gradient(
-        135deg,
-        rgba(255, 248, 235, 0.95) 0%,
-        rgba(245, 235, 220, 0.95) 100%
-    );
-    padding: 20px 25px;
-    border-radius: 8px;
-    border: 1px solid rgba(139, 90, 43, 0.3);
-    box-shadow:
-        3px 3px 10px rgba(60, 40, 20, 0.15),
-        inset 0 0 20px rgba(139, 90, 43, 0.05);
-    /* Fix text alignment - equal lines */
-    text-align: justify;
-    text-justify: inter-word;
-    hyphens: auto;
-    word-wrap: break-word;
-}
-
-.timeline-content h3 {
-    color: #5D4037;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    font-family: var(--font-heading);
-    border-bottom: 2px solid rgba(139, 90, 43, 0.3);
-    padding-bottom: 8px;
-    display: inline-block;
-    text-align: left;
-}
-
-.timeline-content p {
-    color: #4E342E;
-    line-height: 1.8;
-    text-align: justify;
-    margin-bottom: 10px;
-}
-
-/* Fix the 2017-2019 bullet points */
-.timeline-content ul {
-    list-style: none;
-    padding-left: 0;
-    margin: 10px 0 0 0;
-}
-
-.timeline-content ul li {
-    padding: 5px 0;
-    padding-left: 20px;
-    position: relative;
-    text-align: left;
-}
-
-.timeline-content ul li::before {
-    content: "🌱";
-    position: absolute;
-    left: 0;
 }
 
 /* Responsive Design for History Section */
@@ -1416,18 +1349,25 @@ a {
     border-radius: 8px;
     width: 0;
     transition: width 0.1s ease-out;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 12px;
+    padding-right: 10px;
+}
+
+/* First bar (smallest value) - ensure minimum width for label */
+.bar-fill[data-index="0"] {
+    min-width: 70px;
 }
 
 .bar-value {
     font-family: 'IBM Plex Mono', monospace;
     font-weight: 700;
     font-size: 0.95rem;
-    color: var(--white);
+    color: #FFFFFF;
     white-space: nowrap;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 
 .play-btn {
@@ -2524,302 +2464,5 @@ a {
 
     .footer-bottom p {
         font-size: 0.8rem;
-    }
-}
-
-/* ========================================
-   DIAL A TREE SECTION
-   ======================================== */
-.dial-a-tree {
-    padding: 80px 0;
-   
-}
-
-.dial-a-tree .container {
-    max-width: 1100px;
-}
-
-/* Main Card */
-.dial-card {
-    background: #1B5E20;
-    border-radius: 16px;
-    padding: 30px 34px;
-    max-width: 620px;
-    margin: 0 auto;
-    color: var(--white);
-    min-height: 340px;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Single Step View */
-.dial-single-view {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.dial-step-content {
-    flex: 1;
-    min-height: 180px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.dial-step-title {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.dial-step-body {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    text-align: center;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-/* Phone link in step 9 */
-.dial-phone-link {
-    font-family: var(--font-mono);
-    font-weight: 700;
-    color: var(--white);
-    text-decoration: underline;
-}
-
-/* Controls Row */
-.dial-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-/* Number Pills */
-.dial-pills {
-    display: flex;
-    gap: 8px;
-}
-
-.dial-pill {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.18);
-    color: var(--white);
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.dial-pill:hover {
-    background: rgba(255, 255, 255, 0.35);
-}
-
-.dial-pill.active {
-    background: #000000;
-    color: var(--white);
-}
-
-/* View All Steps Button */
-.dial-view-all {
-    background: none;
-    border: none;
-    color: var(--white);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    padding: 5px 10px;
-    transition: opacity 0.3s ease;
-}
-
-.dial-view-all:hover {
-    opacity: 0.8;
-}
-
-/* Navigation Buttons */
-.dial-nav-buttons {
-    display: flex;
-    gap: 12px;
-}
-
-.dial-btn-back,
-.dial-btn-next {
-    padding: 10px 24px;
-    border-radius: 25px;
-    font-family: var(--font-mono);
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.dial-btn-back {
-    background: transparent;
-    border: 2px solid var(--white);
-    color: var(--white);
-}
-
-.dial-btn-back:hover {
-    background: var(--white);
-    color: #1B5E20;
-}
-
-.dial-btn-next {
-    background: var(--white);
-    border: 2px solid var(--white);
-    color: #1B5E20;
-}
-
-.dial-btn-next:hover {
-    background: #f0f0f0;
-    transform: translateY(-2px);
-}
-
-/* All Steps View */
-.dial-all-steps-view {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
-
-.dial-step-entry {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.dial-step-entry:last-child {
-    border-bottom: none;
-}
-
-.dial-entry-number {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.18);
-    color: var(--white);
-    font-family: var(--font-mono);
-    font-size: 1rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.dial-entry-content {
-    flex: 1;
-}
-
-.dial-entry-title {
-    font-family: var(--font-heading);
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-.dial-entry-body {
-    font-size: 1rem;
-    line-height: 1.5;
-    opacity: 0.9;
-}
-
-/* Responsive - Dial a Tree */
-@media (max-width: 768px) {
-    .dial-a-tree {
-        padding: 60px 0;
-    }
-
-    .dial-card {
-        padding: 25px 20px;
-    }
-
-    .dial-step-title {
-        font-size: 1.5rem;
-    }
-
-    .dial-step-body {
-        font-size: 1rem;
-    }
-
-    .dial-controls {
-        gap: 15px;
-    }
-
-    .dial-pills {
-        gap: 6px;
-    }
-
-    .dial-pill {
-        width: 28px;
-        height: 28px;
-        font-size: 0.8rem;
-    }
-
-    .dial-btn-back,
-    .dial-btn-next {
-        padding: 8px 20px;
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .dial-card {
-        padding: 20px 16px;
-        min-height: 320px;
-    }
-
-    .dial-step-title {
-        font-size: 1.35rem;
-    }
-
-    .dial-step-body {
-        font-size: 0.95rem;
-    }
-
-    .dial-controls {
-        justify-content: center;
-        gap: 10px;
-    }
-
-    .dial-pills {
-        gap: 5px;
-    }
-
-    .dial-pill {
-        width: 26px;
-        height: 26px;
-        font-size: 0.75rem;
-    }
-
-    .dial-view-all {
-        font-size: 0.9rem;
-    }
-
-    .dial-btn-back,
-    .dial-btn-next {
-        padding: 7px 16px;
-        font-size: 0.85rem;
-    }
-
-    /* Allow wrapping on very narrow screens */
-    .dial-controls {
-        flex-wrap: wrap;
     }
 }
