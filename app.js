@@ -193,65 +193,84 @@ document.addEventListener('DOMContentLoaded', function() {
         })();
 
         // ========================================
-        // SECTION 4: DONUT CHART
+        // SECTION 4: TREE SPECIES GRID
         // ========================================
         (function() {
-            const canvas = document.getElementById('species-donut-chart');
-            if (!canvas) return;
+            const speciesCircles = document.querySelectorAll('.species-circle');
+            if (speciesCircles.length === 0) return;
 
-            // Placeholder data - REPLACE with real species data later
+            // Species data with names and placeholder info
             const speciesData = {
-                labels: ['Neem', 'Mango', 'Tulsi', 'Banyan', 'Other'],
-                values: [34, 28, 18, 12, 8]
+                'banyan': { name: 'Banyan', scientific: 'Ficus benghalensis' },
+                'mango': { name: 'Mango', scientific: 'Mangifera indica' },
+                'neem': { name: 'Neem', scientific: 'Azadirachta indica' },
+                'tamarind': { name: 'Tamarind', scientific: 'Tamarindus indica' },
+                'jackfruit': { name: 'Jackfruit', scientific: 'Artocarpus heterophyllus' },
+                'chickoo': { name: 'Chickoo', scientific: 'Manilkara zapota' },
+                'sandalwood': { name: 'Sandalwood', scientific: 'Santalum album' },
+                'blackberry': { name: 'Blackberry', scientific: 'Rubus fruticosus' },
+                'gulmohar': { name: 'Gulmohar', scientific: 'Delonix regia' },
+                'bamboo': { name: 'Bamboo', scientific: 'Bambusa balcooa' },
+                'ashoka': { name: 'Ashoka', scientific: 'Saraca asoca' },
+                'custard-apple': { name: 'Custard Apple', scientific: 'Annona reticulata' },
+                'aavla': { name: 'Aavla', scientific: 'Phyllanthus emblica' },
+                'lemon': { name: 'Lemon', scientific: 'Citrus limon' },
+                'arjun': { name: 'Arjun', scientific: 'Terminalia arjuna' },
+                'palm': { name: 'Palm', scientific: 'Areca catechu' },
+                'bottle-brush': { name: 'Bottle Brush', scientific: 'Callistemon viminalis' },
+                'african-tulip': { name: 'African Tulip', scientific: 'Spathodea campanulata' }
             };
 
-            const colors = ['#2E7D32', '#4CAF50', '#FF9800', '#2196F3', '#9C27B0'];
-
-            const ctx = canvas.getContext('2d');
-            const chart = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: speciesData.labels,
-                    datasets: [{
-                        data: speciesData.values,
-                        backgroundColor: colors,
-                        borderWidth: 0,
-                        hoverOffset: 15
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    cutout: '60%',
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return context.label + ': ' + context.raw + '%';
-                                }
-                            }
-                        }
+            // Add click handlers to circles
+            speciesCircles.forEach(circle => {
+                circle.addEventListener('click', () => {
+                    const speciesKey = circle.dataset.species;
+                    const species = speciesData[speciesKey];
+                    if (species) {
+                        openSpeciesLightbox(speciesKey, species);
                     }
-                }
+                });
             });
 
-            // Custom legend
-            const legendContainer = document.getElementById('species-legend');
-            if (legendContainer) {
-                speciesData.labels.forEach((label, index) => {
-                    const item = document.createElement('div');
-                    item.className = 'legend-item';
-                    item.innerHTML = `
-                        <span class="legend-color" style="background: ${colors[index]}"></span>
-                        <span class="legend-label">${label}</span>
-                        <span class="legend-value">${speciesData.values[index]}%</span>
-                    `;
-                    legendContainer.appendChild(item);
-                });
+            // Create species lightbox content element if not exists
+            let speciesLightboxContent = document.getElementById('species-lightbox-content');
+            if (!speciesLightboxContent) {
+                speciesLightboxContent = document.createElement('div');
+                speciesLightboxContent.id = 'species-lightbox-content';
+                speciesLightboxContent.className = 'species-lightbox-content';
+                document.body.appendChild(speciesLightboxContent);
             }
+
+            function openSpeciesLightbox(key, species) {
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = document.getElementById('lightbox-img');
+                const lightboxContent = document.getElementById('species-lightbox-content');
+
+                // Build the species display content
+                lightboxContent.innerHTML = `
+                    <div class="species-lightbox-image-container">
+                        <!-- TODO: insert real photo of ${species.name} tree here -->
+                        <div class="species-placeholder">
+                            <i class="fas fa-tree"></i>
+                            <span>${species.name}</span>
+                        </div>
+                    </div>
+                    <div class="species-lightbox-info">
+                        <h3>${species.name}</h3>
+                        <p class="scientific-name">${species.scientific}</p>
+                    </div>
+                `;
+
+                // Hide the img element and show our custom content
+                lightboxImg.style.display = 'none';
+                lightboxContent.style.display = 'block';
+
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Override lightbox close to also reset display states
+            const originalCloseLightbox = typeof closeLightbox === 'function' ? closeLightbox : null;
         })();
 
         // ========================================
@@ -542,6 +561,12 @@ document.addEventListener('DOMContentLoaded', function() {
         function closeLightbox() {
             lightbox.classList.remove('active');
             document.body.style.overflow = ''; // Enable scrolling
+            // Reset display states for both gallery images and species content
+            lightboxImg.style.display = '';
+            const speciesContent = document.getElementById('species-lightbox-content');
+            if (speciesContent) {
+                speciesContent.style.display = '';
+            }
         }
 
         function showPrev() {

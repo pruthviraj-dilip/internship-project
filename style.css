@@ -784,6 +784,70 @@ a {
     right: 20px;
 }
 
+/* Species Lightbox Content */
+.species-lightbox-content {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 80%;
+    max-height: 80%;
+    text-align: center;
+}
+
+.species-lightbox-image-container {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.species-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #1B5E20;
+    gap: 15px;
+    padding: 20px;
+}
+
+.species-placeholder i {
+    font-size: 80px;
+    opacity: 0.5;
+}
+
+.species-placeholder span {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.species-lightbox-info {
+    color: white;
+    text-align: center;
+}
+
+.species-lightbox-info h3 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.species-lightbox-info .scientific-name {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .nav-links {
@@ -1584,41 +1648,89 @@ a {
   }
 
 /* ========================================
-   SECTION 2: DONUT CHART
+   SECTION 2: TREE SPECIES GRID
    ======================================== */
-.donut-container {
-    max-width: 320px;
-    margin: 0 auto 25px;
-}
-
-.donut-legend {
+.species-grid-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px 25px;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    max-width: 100%;
 }
 
-.legend-item {
+.species-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Offset rows (4-circle rows) for brick-style layout */
+.species-row.offset-row {
+    margin-left: calc(50% + 7.5px);
+    transform: translateX(-50%);
+}
+
+.species-circle {
+    width: 90px;
+    height: 90px;
+    background-color: #1B5E20;
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-}
-
-.legend-color {
-    width: 14px;
-    height: 14px;
-    border-radius: 3px;
-}
-
-.legend-label {
-    color: #5B6B5C;
-}
-
-.legend-value {
-    font-family: 'IBM Plex Mono', monospace;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
     font-weight: 600;
-    color: var(--dark-color);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 8px;
+    line-height: 1.2;
+    word-wrap: break-word;
+}
+
+.species-circle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(27, 94, 32, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .species-grid-container {
+        padding: 15px 10px;
+        gap: 15px;
+    }
+
+    .species-row {
+        gap: 10px;
+    }
+
+    .species-row.offset-row {
+        margin-left: calc(50% + 5px);
+    }
+
+    .species-circle {
+        width: 70px;
+        height: 70px;
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .species-circle {
+        width: 60px;
+        height: 60px;
+        font-size: 0.55rem;
+    }
+
+    .species-row {
+        gap: 8px;
+    }
+
+    .species-row.offset-row {
+        margin-left: calc(50% + 4px);
+    }
 }
 
 /* ========================================
