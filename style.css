@@ -1294,14 +1294,24 @@ a {
 }
 
 .card-title {
-    /* display: flex;
-    justify-content: center; */
     font-size: 1.5rem;
     color: var(--dark-color);
     margin-bottom: 8px;
     font-family: 'Fraunces', serif;
     font-weight: 600;
 }
+
+.card-header{
+    position: relative;
+    top: -25px;
+    left:-15px;
+    font-size: 1.5rem;
+    color: var(--dark-color);
+    margin-bottom: 8px;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+}
+
 
 .card-description {
     color: #5B6B5C;
@@ -1632,18 +1642,20 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
+    background-color: #f0f0f0;
+    background-repeat: no-repeat;
 }
 
 .comparison-before {
-    /* TODO: Replace this background with the real "before" photo of the plantation site */
-    /* Example: background-image: url('path/to/before-photo.jpg'); */
-    background: linear-gradient(135deg, #D9C9A3 0%, #B896A1 100%);
+    background-image: url('Gallery/beforeimage.jpeg');
+    background-size: cover;
+    background-position: center;
 }
 
 .comparison-after {
-    /* TODO: Replace this background with the real "after" photo of the plantation site */
-    /* Example: background-image: url('path/to/after-photo.jpg'); */
-    background: linear-gradient(135deg, #8FD19E 0%, #2E7D32 100%);
+    background-image: url('Gallery/afterimage.jpeg');
+    background-size: cover;
+    background-position: center;
     width: 50%;
     border-right: 3px solid var(--white);
 }
@@ -1761,11 +1773,17 @@ a {
 .milestone-item:nth-child(odd) .milestone-content {
     margin-bottom: 50px;
     margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .milestone-item:nth-child(even) .milestone-content {
     margin-top: 50px;
     margin-bottom: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
 }
 
 .milestone-content {
@@ -1781,7 +1799,14 @@ a {
     font-weight: 700;
     font-size: 1.1rem;
     color: var(--dark-color);
+}
+
+.milestone-item:nth-child(odd) .milestone-year {
     margin-bottom: 8px;
+}
+
+.milestone-item:nth-child(even) .milestone-year {
+    margin-top: 8px;
 }
 
 .milestone-description {
