@@ -113,12 +113,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Placeholder data - REPLACE with real NGO record later
             const treeData = [
-                { year: 2021, trees: 800 },
-                { year: 2022, trees: 2200 },
-                { year: 2023, trees: 4100 },
-                { year: 2024, trees: 7600 },
-                { year: 2025, trees: 12500 },
-                { year: 2026, trees: 19000 }
+                { year: 2020, trees: 1000 },
+                { year: 2005, trees: 4000 },
+                { year: 2010, trees: 8000 },
+                { year: 2015, trees: 13000 },
+                { year: 2020, trees: 19000 },
+                { year: 2026, trees: 25000 }
             ];
 
             const maxTrees = Math.max(...treeData.map(d => d.trees));
@@ -323,11 +323,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Placeholder milestone data - REPLACE with real NGO History later
             const milestones = [
-                { year: 2019, description: 'NGO Founded' },
-                { year: 2021, description: '1000th tree' },
-                { year: 2023, description: 'First District wide drive' },
-                { year: 2025, description: '10000th tree planted' },
-                { year: 2026, description: 'This website launches' }
+                { year: 2000, description: 'NGO Founded' },
+                { year: 2007, description: 'First State and National Award' },
+                { year: 2022, description: 'Launch of Talking Oxygen Park' },
+                { year: 2025, description: '25,000 Saplings Planted' },
+                { year: 2026, description: 'This Website Launches' }
             ];
 
             const itemsContainer = document.createElement('div');
