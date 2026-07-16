@@ -206,19 +206,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 'neem': { name: 'Neem', scientific: 'Azadirachta indica' },
                 'tamarind': { name: 'Tamarind', scientific: 'Tamarindus indica' },
                 'jackfruit': { name: 'Jackfruit', scientific: 'Artocarpus heterophyllus' },
+                'orchid': { name: 'Orchid', scientific: 'Orchidaceae' },
+                'wood-apple': { name: 'Wood Apple', scientific: 'Limonia acidissima' },
                 'chickoo': { name: 'Chickoo', scientific: 'Manilkara zapota' },
                 'sandalwood': { name: 'Sandalwood', scientific: 'Santalum album' },
                 'blackberry': { name: 'Blackberry', scientific: 'Rubus fruticosus' },
                 'gulmohar': { name: 'Gulmohar', scientific: 'Delonix regia' },
+                'guava': { name: 'Guava', scientific: 'Psidium guajava' },
+                'soapnut': { name: 'Soapnut', scientific: 'Sapindus mukorossi' },
                 'bamboo': { name: 'Bamboo', scientific: 'Bambusa balcooa' },
                 'ashoka': { name: 'Ashoka', scientific: 'Saraca asoca' },
                 'custard-apple': { name: 'Custard Apple', scientific: 'Annona reticulata' },
                 'aavla': { name: 'Aavla', scientific: 'Phyllanthus emblica' },
                 'lemon': { name: 'Lemon', scientific: 'Citrus limon' },
+                'mahogany': { name: 'Mahogany', scientific: 'Swietenia mahagoni' },
+                'spanish-cherry': { name: 'Spanish Cherry', scientific: 'Mimusops elengi' },
                 'arjun': { name: 'Arjun', scientific: 'Terminalia arjuna' },
                 'palm': { name: 'Palm', scientific: 'Areca catechu' },
                 'bottle-brush': { name: 'Bottle Brush', scientific: 'Callistemon viminalis' },
-                'african-tulip': { name: 'African Tulip', scientific: 'Spathodea campanulata' }
+                'african-tulip': { name: 'African Tulip', scientific: 'Spathodea campanulata' },
+                'axlewood': { name: 'Axlewood', scientific: 'Anogeissus latifolia' },
+                'plumeria': { name: 'Plumeria', scientific: 'Plumeria rubra' }
             };
 
             // Add click handlers to circles
