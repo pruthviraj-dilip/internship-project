@@ -2591,7 +2591,807 @@ a {
     .contact-info-column {
         padding: 30px 20px;
     }
+}
 
+/* ========================================
+   PROJECTS PAGE SECTION
+   ======================================== */
+.projects-page {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.projects-page .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+    font-family: var(--font-heading);
+}
+
+.projects-page .section-subtitle {
+    text-align: center;
+    color: var(--gray-caption);
+    margin-bottom: 50px;
+    font-size: 1.1rem;
+}
+
+/* Project Card Container */
+.project-card {
+    background: var(--light-color);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 40px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.project-card:last-child {
+    margin-bottom: 0;
+}
+
+.project-number {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.project-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--dark-color);
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Project Columns Layout */
+.project-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.project-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Project Info Card */
+.project-info-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid var(--border-color);
+    height: 100%;
+}
+
+.project-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.project-bullets li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.6;
+}
+
+.project-bullets li:last-child {
+    margin-bottom: 0;
+}
+
+.project-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    background: var(--primary-color);
+    border-radius: 50%;
+}
+
+/* Stats Card */
+.project-stats-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid var(--border-color);
+}
+
+.stats-partitions {
+    display: flex;
+    height: 100%;
+}
+
+.stats-partition {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px 10px;
+    border-right: 1px solid var(--border-color);
+}
+
+.stats-partition:last-child {
+    border-right: none;
+}
+
+.stats-number {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.stats-label {
+    font-size: 0.85rem;
+    color: var(--gray-caption);
+    font-weight: 500;
+}
+
+.stats-label-center {
+    font-size: 0.85rem;
+    color: var(--gray-caption);
+    font-weight: 500;
+}
+
+/* Support Card */
+.project-support-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid var(--border-color);
+}
+
+.support-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.support-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.support-list li {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.support-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* River Map Card */
+.river-map-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid var(--border-color);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.river-curve {
+    width: 100%;
+    height: auto;
+    max-height: 280px;
+}
+
+.river-label {
+    font-family: var(--font-body);
+    font-size: 12px;
+    fill: var(--dark-color);
+    font-weight: 500;
+}
+
+/* ========================================
+   PROJECT 2: TALKING OXYGEN PARK
+   ======================================== */
+.talking-oxygen-park {
+    background: var(--light-color);
+}
+
+.talking-oxygen-park .project-title {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.project-content-panel {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 35px;
+    margin-top: 30px;
+    border: 1px solid var(--border-color);
+}
+
+.oxygen-partitions {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.oxygen-partition {
+    flex: 1;
+    padding: 25px 30px;
+    border-right: 1px solid var(--border-color);
+}
+
+.oxygen-partition:last-child {
+    border-right: none;
+}
+
+.partition-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.partition-text {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.language-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.language-list li {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.language-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.oxygen-button-container {
+    text-align: center;
+    padding: 30px 0 10px;
+}
+
+.oxygen-explore-btn {
+    display: inline-block;
+    padding: 14px 35px;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.oxygen-explore-btn:hover {
+    background: var(--dark-color);
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   PROJECT 3: DIAL A TREE
+   ======================================== */
+.dial-tree-heading {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--dark-color);
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.dial-tree-card {
+    background: var(--dark-color);
+    border-radius: 16px;
+    padding: 35px 40px;
+    max-width: 640px;
+    margin: 0 auto 40px;
+    color: var(--white);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.dial-tree-content {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dial-tree-step {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.step-display {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.step-number {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 45px;
+    margin-bottom: 20px;
+}
+
+.step-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.step-body {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+/* All steps view */
+.dial-tree-all-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.all-step-item {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.all-step-item:last-child {
+    border-bottom: none;
+}
+
+.all-step-item .step-number {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+    line-height: 32px;
+    margin-bottom: 10px;
+}
+
+.all-step-item .step-title {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.all-step-item .step-body {
+    font-size: 0.95rem;
+}
+
+/* Controls */
+.dial-tree-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.step-pills {
+    display: flex;
+    gap: 8px;
+}
+
+.step-pill {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.18);
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.step-pill:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: var(--white);
+}
+
+.step-pill.active {
+    background: #000000;
+    color: var(--white);
+}
+
+.view-all-btn {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-decoration: underline;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+}
+
+.view-all-btn:hover {
+    opacity: 1;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.back-btn,
+.next-btn {
+    padding: 10px 28px;
+    border-radius: 25px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.back-btn {
+    background: transparent;
+    border: 2px solid var(--white);
+    color: var(--white);
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.next-btn,
+.start-over-btn {
+    background: var(--gold);
+    border: none;
+    color: var(--dark-color);
+}
+
+.next-btn:hover,
+.start-over-btn:hover {
+    background: #c47f35;
+    transform: translateY(-1px);
+}
+
+.phone-link {
+    color: var(--white);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.phone-link:hover {
+    text-decoration: underline;
+}
+
+/* ========================================
+   MINI PROJECTS
+   ======================================== */
+.mini-projects-card {
+    background: var(--light-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 35px 40px;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.mini-projects-card .project-number {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.mini-projects-card .project-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--dark-color);
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.mini-projects-content {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 30px 35px;
+    border: 1px solid var(--border-color);
+}
+
+.mini-projects-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mini-projects-list li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 18px;
+    font-size: 1rem;
+    color: #3d4a3e;
+    line-height: 1.6;
+}
+
+.mini-projects-list li:last-child {
+    margin-bottom: 0;
+}
+
+.mini-projects-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    background: var(--dark-color);
+    border-radius: 50%;
+}
+
+.mini-projects-list li strong {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+/* ========================================
+   RESPONSIVE: PROJECTS PAGE
+   ======================================== */
+@media (max-width: 900px) {
+    .project-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .oxygen-partitions {
+        flex-direction: column;
+    }
+
+    .oxygen-partition {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .oxygen-partition:last-child {
+        border-bottom: none;
+    }
+
+    .stats-partitions {
+        flex-direction: column;
+    }
+
+    .stats-partition {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 20px;
+    }
+
+    .stats-partition:last-child {
+        border-bottom: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-page {
+        padding: 60px 0;
+    }
+
+    .projects-page .section-title {
+        font-size: 2rem;
+    }
+
+    .project-card {
+        padding: 25px 20px;
+    }
+
+    .project-title {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+
+    .project-info-card,
+    .project-stats-card,
+    .project-support-card,
+    .river-map-card {
+        padding: 20px;
+    }
+
+    .stats-number {
+        font-size: 2rem;
+    }
+
+    .oxygen-button-container {
+        padding: 20px 0 5px;
+    }
+
+    .oxygen-explore-btn {
+        padding: 12px 28px;
+        font-size: 0.95rem;
+    }
+
+    .project-content-panel {
+        padding: 25px 20px;
+    }
+
+    /* Dial A Tree */
+    .dial-tree-heading {
+        font-size: 1.6rem;
+    }
+
+    .dial-tree-card {
+        padding: 25px 20px;
+    }
+
+    .dial-tree-controls {
+        gap: 15px;
+    }
+
+    .step-pills {
+        gap: 6px;
+    }
+
+    .step-pill {
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
+    }
+
+    .view-all-btn {
+        font-size: 0.9rem;
+    }
+
+    .back-btn,
+    .next-btn {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+
+    /* Mini Projects */
+    .mini-projects-card {
+        padding: 25px 20px;
+    }
+
+    .mini-projects-card .project-title {
+        font-size: 1.5rem;
+    }
+
+    .mini-projects-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .projects-page .section-title {
+        font-size: 1.75rem;
+    }
+
+    .projects-page .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 35px;
+    }
+
+    .project-number {
+        font-size: 0.8rem;
+    }
+
+    .project-title {
+        font-size: 1.3rem;
+    }
+
+    /* Dial A Tree */
+    .dial-tree-heading {
+        font-size: 1.4rem;
+    }
+
+    .dial-tree-card {
+        padding: 20px 15px;
+        border-radius: 12px;
+    }
+
+    .step-title {
+        font-size: 1.3rem;
+    }
+
+    .step-body {
+        font-size: 0.95rem;
+    }
+
+    .dial-tree-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .step-pills {
+        order: 1;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .view-all-btn {
+        order: 2;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-buttons {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .back-btn,
+    .next-btn {
+        padding: 8px 24px;
+        font-size: 0.85rem;
+    }
+
+    /* Mini Projects */
+    .mini-projects-card {
+        padding: 20px 15px;
+    }
+
+    .mini-projects-card .project-title {
+        font-size: 1.3rem;
+    }
+
+    .mini-projects-content {
+        padding: 15px;
+    }
+
+    .mini-projects-list li {
+        font-size: 0.9rem;
+        padding-left: 20px;
+    }
+}
+@media (max-width: 480px){
     .contact-heading {
         font-size: 1.2rem;
         margin-bottom: 20px;

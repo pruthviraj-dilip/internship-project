@@ -815,3 +815,176 @@ const CO2_PER_TREE = 22;
   setupLeaders();
   drawRings(1);
   update();
+
+  // ========================================
+  // DIAL A TREE - Step Navigation
+  // ========================================
+  const dialTreeSteps = [
+      {
+          title: "Call the number",
+          body: "Dial the number listed on this page. Tell us you'd like to plant a tree — no forms, no advance booking required."
+      },
+      {
+          title: "We schedule a visit",
+          body: "Our team arranges a convenient time to come to your home or the location you choose."
+      },
+      {
+          title: "Pick your tree",
+          body: "Our team arrives and asks which tree or sapling you'd like — a species with personal meaning, or one we recommend for your soil and space."
+      },
+      {
+          title: "We dig the hole",
+          body: "Our team prepares the ground at the chosen spot, right at your location."
+      },
+      {
+          title: "The tree is planted",
+          body: "Your chosen tree or seed is planted directly into the prepared ground."
+      },
+      {
+          title: "Watering",
+          body: "The newly planted tree is watered thoroughly to help it take root."
+      },
+      {
+          title: "Natural fertilizer & pesticide",
+          body: "We apply organic fertilizer and pesticide prepared in-house at Nisarg Seva Samiti — no harsh chemicals."
+      },
+      {
+          title: "Ground is closed",
+          body: "The soil is closed back over the roots, and your tree is left ready to grow."
+      },
+      {
+          title: "Ready to Call Us",
+          body: "Call us on <a href='tel:9822523895' class='phone-link'>9822523895</a>"
+      }
+  ];
+
+  let currentStep = 1;
+  const totalSteps = dialTreeSteps.length;
+  let isViewAllMode = false;
+
+  // DOM Elements
+  const stepNumber = document.getElementById('step-number');
+  const stepTitle = document.getElementById('step-title');
+  const stepBody = document.getElementById('step-body');
+  const dialTreeSingle = document.getElementById('dial-tree-single');
+  const dialTreeAll = document.getElementById('dial-tree-all');
+  const stepPills = document.getElementById('step-pills');
+  const viewAllBtn = document.getElementById('view-all-btn');
+  const backBtn = document.getElementById('back-btn');
+  const nextBtn = document.getElementById('next-btn');
+
+  // Render all steps view
+  function renderAllSteps() {
+      dialTreeAll.innerHTML = dialTreeSteps.map((step, index) => {
+          let bodyContent = step.body;
+          if (index === 8) {
+              bodyContent = "Call us on <a href='tel:9822523895' class='phone-link'>9822523895</a>";
+          }
+          return `
+              <div class="all-step-item">
+                  <span class="step-number">${index + 1}</span>
+                  <h4 class="step-title">${step.title}</h4>
+                  <p class="step-body">${bodyContent}</p>
+              </div>
+          `;
+      }).join('');
+  }
+
+  // Update single step view
+  function updateStep(stepNum) {
+      currentStep = stepNum;
+      const step = dialTreeSteps[stepNum - 1];
+
+      stepNumber.textContent = stepNum;
+      stepTitle.textContent = step.title;
+
+      if (stepNum === 9) {
+          stepBody.innerHTML = "Call us on <a href='tel:9822523895' class='phone-link'>9822523895</a>";
+      } else {
+          stepBody.textContent = step.body;
+      }
+
+      // Update pill states
+      document.querySelectorAll('.step-pill').forEach((pill, idx) => {
+          pill.classList.toggle('active', idx + 1 === stepNum);
+      });
+
+      // Update button visibility
+      backBtn.style.display = stepNum === 1 ? 'none' : 'inline-block';
+
+      if (stepNum === totalSteps) {
+          nextBtn.textContent = 'Start over';
+          nextBtn.classList.add('start-over-btn');
+          stepPills.style.display = 'none';
+      } else {
+          nextBtn.textContent = 'Next';
+          nextBtn.classList.remove('start-over-btn');
+          stepPills.style.display = 'flex';
+      }
+
+      // Hide "View all steps" on steps 2-8
+      viewAllBtn.style.display = stepNum === 1 ? 'inline-block' : 'none';
+  }
+
+  // Update controls visibility
+  function updateControlsVisibility() {
+      if (isViewAllMode) {
+          stepPills.style.display = 'none';
+          viewAllBtn.textContent = 'View step by step';
+          backBtn.style.display = 'none';
+          nextBtn.style.display = 'none';
+      } else {
+          updateStep(currentStep);
+      }
+  }
+
+  // Pill click handlers
+  document.querySelectorAll('.step-pill').forEach(pill => {
+      pill.addEventListener('click', function() {
+          const step = parseInt(this.dataset.step);
+          if (!isViewAllMode) {
+              updateStep(step);
+          }
+      });
+  });
+
+  // View all toggle
+  viewAllBtn.addEventListener('click', function() {
+      if (isViewAllMode) {
+          // Collapse back to single step view
+          isViewAllMode = false;
+          dialTreeSingle.style.display = 'block';
+          dialTreeAll.style.display = 'none';
+          currentStep = 1;
+          updateControlsVisibility();
+      } else {
+          // Expand to show all steps
+          isViewAllMode = true;
+          dialTreeSingle.style.display = 'none';
+          dialTreeAll.style.display = 'flex';
+          renderAllSteps();
+          updateControlsVisibility();
+      }
+  });
+
+  // Back button
+  backBtn.addEventListener('click', function() {
+      if (currentStep > 1) {
+          updateStep(currentStep - 1);
+      }
+  });
+
+  // Next/Start over button
+  nextBtn.addEventListener('click', function() {
+      if (currentStep === totalSteps) {
+          // Start over - reset to step 1
+          currentStep = 1;
+          isViewAllMode = false;
+          dialTreeSingle.style.display = 'block';
+          dialTreeAll.style.display = 'none';
+          nextBtn.classList.remove('start-over-btn');
+          updateStep(1);
+      } else {
+          updateStep(currentStep + 1);
+      }
+  });
