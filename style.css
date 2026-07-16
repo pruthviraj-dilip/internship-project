@@ -1661,18 +1661,19 @@ a {
 .species-row {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 25px;
 }
 
 /* Offset rows (4-circle rows) for brick-style layout */
 .species-row.offset-row {
-    margin-left: calc(50% + 7.5px);
+    margin-left: calc(50% + 8px);
     transform: translateX(-50%);
+
 }
 
 .species-circle {
-    width: 120px;
-    height: 120px;
+    width: 180px;
+    height: 180px;
     background-color: #1B5E20;
     border-radius: 50%;
     display: flex;
@@ -1681,7 +1682,27 @@ a {
     text-align: center;
     color: white;
     font-family: var(--font-body);
-    font-size: 0.7rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 8px;
+    line-height: 1.2;
+    word-wrap: break-word;
+}
+
+.species-circle-inner{
+    width: 180px;
+    height: 180px;
+    background-color: #1B5E20;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1703,33 +1724,35 @@ a {
     }
 
     .species-row {
+        gap: 12px;
+    }
+
+    .species-row.offset-row {
+        margin-left: calc(50% + 6px);
+    }
+
+    .species-circle,
+    .species-circle-inner {
+        width: 85px;
+        height: 85px;
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .species-circle,
+    .species-circle-inner {
+        width: 70px;
+        height: 70px;
+        font-size: 0.6rem;
+    }
+
+    .species-row {
         gap: 10px;
     }
 
     .species-row.offset-row {
         margin-left: calc(50% + 5px);
-    }
-
-    .species-circle {
-        width: 70px;
-        height: 70px;
-        font-size: 0.6rem;
-    }
-}
-
-@media (max-width: 400px) {
-    .species-circle {
-        width: 60px;
-        height: 60px;
-        font-size: 0.55rem;
-    }
-
-    .species-row {
-        gap: 8px;
-    }
-
-    .species-row.offset-row {
-        margin-left: calc(50% + 4px);
     }
 }
 
@@ -2392,15 +2415,15 @@ a {
     font-size: 1.2rem;
 }
 
-.social-icon.fa-instagram {
+.social-icon[aria-label="Instagram"] i {
     color: #E4405F;
 }
 
-.social-icon.fa-facebook-f {
+.social-icon[aria-label="Facebook"] i {
     color: #1877F2;
 }
 
-.social-icon.fa-youtube {
+.social-icon[aria-label="YouTube"] i {
     color: #FF0000;
 }
 
