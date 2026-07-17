@@ -199,86 +199,108 @@ document.addEventListener('DOMContentLoaded', function() {
             const speciesCircles = document.querySelectorAll('.species-circle');
             if (speciesCircles.length === 0) return;
 
-            // Species data with names and placeholder info
+            // Species data with names and photos from Tree Photos folder
             const speciesData = {
-                'banyan': { name: 'Banyan', scientific: 'Ficus benghalensis' },
-                'mango': { name: 'Mango', scientific: 'Mangifera indica' },
-                'neem': { name: 'Neem', scientific: 'Azadirachta indica' },
-                'tamarind': { name: 'Tamarind', scientific: 'Tamarindus indica' },
-                'jackfruit': { name: 'Jackfruit', scientific: 'Artocarpus heterophyllus' },
-                'orchid': { name: 'Orchid', scientific: 'Orchidaceae' },
-                'wood-apple': { name: 'Wood Apple', scientific: 'Limonia acidissima' },
-                'chickoo': { name: 'Chickoo', scientific: 'Manilkara zapota' },
-                'sandalwood': { name: 'Sandalwood', scientific: 'Santalum album' },
-                'blackberry': { name: 'Blackberry', scientific: 'Rubus fruticosus' },
-                'gulmohar': { name: 'Gulmohar', scientific: 'Delonix regia' },
-                'guava': { name: 'Guava', scientific: 'Psidium guajava' },
-                'soapnut': { name: 'Soapnut', scientific: 'Sapindus mukorossi' },
-                'bamboo': { name: 'Bamboo', scientific: 'Bambusa balcooa' },
-                'ashoka': { name: 'Ashoka', scientific: 'Saraca asoca' },
-                'custard-apple': { name: 'Custard Apple', scientific: 'Annona reticulata' },
-                'aavla': { name: 'Aavla', scientific: 'Phyllanthus emblica' },
-                'lemon': { name: 'Lemon', scientific: 'Citrus limon' },
-                'mahogany': { name: 'Mahogany', scientific: 'Swietenia mahagoni' },
-                'spanish-cherry': { name: 'Spanish Cherry', scientific: 'Mimusops elengi' },
-                'arjun': { name: 'Arjun', scientific: 'Terminalia arjuna' },
-                'palm': { name: 'Palm', scientific: 'Areca catechu' },
-                'bottle-brush': { name: 'Bottle Brush', scientific: 'Callistemon viminalis' },
-                'african-tulip': { name: 'African Tulip', scientific: 'Spathodea campanulata' },
-                'axlewood': { name: 'Axlewood', scientific: 'Anogeissus latifolia' },
-                'plumeria': { name: 'Plumeria', scientific: 'Plumeria rubra' }
+                'banyan': { name: 'Banyan', scientific: 'Ficus benghalensis', photo: 'Banyan Tree.jpg' },
+                'mango': { name: 'Mango', scientific: 'Mangifera indica', photo: 'Mango Tree.jpg' },
+                'neem': { name: 'Neem', scientific: 'Azadirachta indica', photo: 'Neem Tree.jpg' },
+                'tamarind': { name: 'Tamarind', scientific: 'Tamarindus indica', photo: 'Tamarind Tree.jpg' },
+                'jackfruit': { name: 'Jackfruit', scientific: 'Artocarpus heterophyllus', photo: 'Jackfruit Tree.jpg' },
+                'orchid': { name: 'Orchid', scientific: 'Orchidaceae', photo: 'Orchids Tree.jpg' },
+                'wood-apple': { name: 'Wood Apple', scientific: 'Limonia acidissima', photo: 'Woodapple Tree.jfif' },
+                'chickoo': { name: 'Chickoo', scientific: 'Manilkara zapota', photo: 'Chikoo Tree.jpg' },
+                'sandalwood': { name: 'Sandalwood', scientific: 'Santalum album', photo: 'Sandalwood.jpg' },
+                'blackberry': { name: 'Blackberry', scientific: 'Rubus fruticosus', photo: 'Indian Blackberry.jpg' },
+                'gulmohar': { name: 'Gulmohar', scientific: 'Delonix regia', photo: 'Gulmohar.jpg' },
+                'guava': { name: 'Guava', scientific: 'Psidium guajava', photo: 'Guava Tree.jpg' },
+                'soapnut': { name: 'Soapnut', scientific: 'Sapindus mukorossi', photo: 'Soapnut Tree.jpg' },
+                'bamboo': { name: 'Bamboo', scientific: 'Bambusa balcooa', photo: 'Bamboo.jpg' },
+                'ashoka': { name: 'Ashoka', scientific: 'Saraca asoca', photo: 'Ashoka Tree.jpg' },
+                'custard-apple': { name: 'Custard Apple', scientific: 'Annona reticulata', photo: 'Custard Apple.jpg' },
+                'aavla': { name: 'Aavla', scientific: 'Phyllanthus emblica', photo: 'Aavla.jpg' },
+                'lemon': { name: 'Lemon', scientific: 'Citrus limon', photo: 'Lemon Tree.jpg' },
+                'mahogany': { name: 'Mahogany', scientific: 'Swietenia mahagoni', photo: 'Mahogany Tree.webp' },
+                'spanish-cherry': { name: 'Spanish Cherry', scientific: 'Mimusops elengi', photo: 'Spanish Cherry Tree.webp' },
+                'arjun': { name: 'Arjun', scientific: 'Terminalia arjuna', photo: 'Arjun Tree.jpg' },
+                'palm': { name: 'Palm', scientific: 'Areca catechu', photo: 'Palm Tree.jpg' },
+                'bottle-brush': { name: 'Bottle Brush', scientific: 'Callistemon viminalis', photo: 'BottleBrush Tree.jpg' },
+                'african-tulip': { name: 'African Tulip', scientific: 'Spathodea campanulata', photo: 'African Tulip.jpg' },
+                'axlewood': { name: 'Axlewood', scientific: 'Anogeissus latifolia', photo:'Axlewood Tree.jfif'  },
+                'plumeria': { name: 'Plumeria', scientific: 'Plumeria rubra', photo: 'plumeria Tree.jfif' }
             };
 
-            // Add click handlers to circles
-            speciesCircles.forEach(circle => {
-                circle.addEventListener('click', () => {
-                    const speciesKey = circle.dataset.species;
-                    const species = speciesData[speciesKey];
-                    if (species) {
-                        openSpeciesLightbox(speciesKey, species);
-                    }
-                });
-            });
-
-            // Create species lightbox content element if not exists
-            let speciesLightboxContent = document.getElementById('species-lightbox-content');
-            if (!speciesLightboxContent) {
-                speciesLightboxContent = document.createElement('div');
-                speciesLightboxContent.id = 'species-lightbox-content';
-                speciesLightboxContent.className = 'species-lightbox-content';
-                document.body.appendChild(speciesLightboxContent);
+            // Create species modal element
+            let speciesModal = document.getElementById('species-modal');
+            if (!speciesModal) {
+                speciesModal = document.createElement('div');
+                speciesModal.id = 'species-modal';
+                speciesModal.className = 'species-modal';
+                speciesModal.innerHTML = `
+                    <div class="species-modal-overlay"></div>
+                    <div class="species-modal-content">
+                        <button class="species-modal-close">&times;</button>
+                        <div class="species-modal-image"></div>
+                        <div class="species-modal-info">
+                            <h3></h3>
+                            <p></p>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(speciesModal);
             }
 
-            function openSpeciesLightbox(key, species) {
-                const lightbox = document.getElementById('lightbox');
-                const lightboxImg = document.getElementById('lightbox-img');
-                const lightboxContent = document.getElementById('species-lightbox-content');
+            // Get elements
+            const modalOverlay = speciesModal.querySelector('.species-modal-overlay');
+            const modalClose = speciesModal.querySelector('.species-modal-close');
+            const modalImage = speciesModal.querySelector('.species-modal-image');
+            const modalInfoH3 = speciesModal.querySelector('.species-modal-info h3');
+            const modalInfoP = speciesModal.querySelector('.species-modal-info p');
 
-                // Build the species display content
-                lightboxContent.innerHTML = `
-                    <div class="species-lightbox-image-container">
-                        <!-- TODO: insert real photo of ${species.name} tree here -->
+            // Close modal function
+            function closeSpeciesModal() {
+                speciesModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // Open modal function
+            function openSpeciesModal(species) {
+                modalInfoH3.textContent = species.name;
+                // modalInfoP.textContent = species.scientific;
+
+                if (species.photo) {
+                    modalImage.innerHTML = `<img src="Tree Photos/${species.photo}" alt="${species.name}">`;
+                } else {
+                    modalImage.innerHTML = `
                         <div class="species-placeholder">
                             <i class="fas fa-tree"></i>
                             <span>${species.name}</span>
                         </div>
-                    </div>
-                    <div class="species-lightbox-info">
-                        <h3>${species.name}</h3>
-                        <p class="scientific-name">${species.scientific}</p>
-                    </div>
-                `;
+                    `;
+                }
 
-                // Hide the img element and show our custom content
-                lightboxImg.style.display = 'none';
-                lightboxContent.style.display = 'block';
-
-                lightbox.classList.add('active');
+                speciesModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
 
-            // Override lightbox close to also reset display states
-            const originalCloseLightbox = typeof closeLightbox === 'function' ? closeLightbox : null;
+            // Add click handlers to circles
+            speciesCircles.forEach(circle => {
+                circle.addEventListener('click', function() {
+                    const speciesKey = this.dataset.species;
+                    const species = speciesData[speciesKey];
+                    if (species) {
+                        openSpeciesModal(species);
+                    }
+                });
+            });
+
+            // Close modal events
+            modalOverlay.addEventListener('click', closeSpeciesModal);
+            modalClose.addEventListener('click', closeSpeciesModal);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && speciesModal.classList.contains('active')) {
+                    closeSpeciesModal();
+                }
+            });
         })();
 
         // ========================================
