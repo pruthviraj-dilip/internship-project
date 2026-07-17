@@ -518,6 +518,103 @@ a {
     opacity: 0.9;
 }
 
+/* ========================================
+   QUOTE STRIP SECTION
+   (Reuses .stats class styling)
+   ======================================== */
+.quote-strip {
+    padding: 60px 0;
+    background: linear-gradient(135deg, var(--dark-color) 0%, var(--primary-color) 100%);
+}
+
+.quote-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.quote-portrait {
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.portrait-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.quote-text-container {
+    flex: 1;
+    max-width: 800px;
+    text-align: center;
+}
+
+.quote-text {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.5;
+    margin: 0 0 15px 0;
+    font-weight: 600;
+}
+
+.quote-attribution {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+    display: block;
+    text-align: right;
+    font-style: normal;
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 768px) {
+    .quote-content {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .quote-portrait {
+        width: 100px;
+        height: 100px;
+    }
+
+    .quote-text {
+        font-size: 1.4rem;
+    }
+
+    .quote-attribution {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .quote-strip {
+        padding: 40px 0;
+    }
+
+    .quote-portrait {
+        width: 80px;
+        height: 80px;
+    }
+
+    .quote-text {
+        font-size: 1.2rem;
+    }
+
+    .quote-attribution {
+        font-size: 1rem;
+    }
+}
+
 /* Contact Section */
 .contact {
     padding: 80px 0;
