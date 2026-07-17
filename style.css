@@ -536,8 +536,8 @@ a {
 
 .quote-portrait {
     flex-shrink: 0;
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid rgba(255, 255, 255, 0.3);
