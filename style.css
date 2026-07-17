@@ -2771,7 +2771,8 @@ a {
 .project-column {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 70px;
+  
 }
 
 /* Project Info Card */
@@ -2781,6 +2782,7 @@ a {
     padding: 25px;
     border: 1px solid var(--border-color);
     height: 100%;
+    
 }
 
 .project-bullets {
@@ -2819,6 +2821,9 @@ a {
     border-radius: 12px;
     padding: 25px;
     border: 1px solid var(--border-color);
+    position: relative;
+    top: 80px;
+    
 }
 
 .stats-partitions {
@@ -2866,13 +2871,16 @@ a {
 .project-support-card {
     background: var(--white);
     border-radius: 12px;
-    padding: 25px;
+    padding: 15px;
     border: 1px solid var(--border-color);
+    width: 360px;
+    position: relative;
+    top: 50px;
 }
 
 .support-title {
     font-family: var(--font-heading);
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     color: var(--dark-color);
     margin-bottom: 15px;
     font-weight: 600;
@@ -2902,14 +2910,8 @@ a {
 
 /* River Map Card */
 .river-map-card {
-    background: var(--white);
-    border-radius: 12px;
-    padding: 25px;
-    border: 1px solid var(--border-color);
-    height: 70%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    top: 125px;
 }
 
 .river-curve {
