@@ -3161,6 +3161,7 @@ a {
 .dial-tree-content {
     min-height: 120px;
     display: flex;
+    align-items: flex-start;
     flex-direction: column;
     justify-content: center;
 }
@@ -3240,10 +3241,14 @@ a {
 .dial-tree-controls {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-between;
     margin-top: 15px;
-    flex-wrap: wrap;
+}
+
+.right-controls {
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
 
 .step-pills {

@@ -883,7 +883,7 @@ const CO2_PER_TREE = 22;
           body: "The soil is closed back over the roots, and your tree is left ready to grow."
       },
       {
-          title: "Ready to Call Us",
+          title: "Ready to Call Us ?",
           body: "Call us on <a href='tel:9822523895' class='phone-link'>9822523895</a>"
       }
   ];
@@ -964,6 +964,7 @@ const CO2_PER_TREE = 22;
           backBtn.style.display = 'none';
           nextBtn.style.display = 'none';
       } else {
+          viewAllBtn.textContent = "View all steps";
           nextBtn.style.display = 'inline-block';
           backBtn.style.display = currentStep === 1 ? 'none' : 'inline-block';
           stepPills.style.display = 'flex';
