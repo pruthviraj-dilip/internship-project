@@ -945,12 +945,13 @@ const CO2_PER_TREE = 22;
       if (stepNum === totalSteps) {
           nextBtn.textContent = 'Start over';
           nextBtn.classList.add('start-over-btn');
-          stepPills.style.display = 'none';
       } else {
           nextBtn.textContent = 'Next';
           nextBtn.classList.remove('start-over-btn');
           stepPills.style.display = 'flex';
       }
+
+      stepPills.style.display = 'flex';
 
       // Hide "View all steps" on steps 2-8
       viewAllBtn.style.display = stepNum === 1 ? 'inline-block' : 'none';
@@ -991,6 +992,10 @@ const CO2_PER_TREE = 22;
           dialTreeAll.style.display = 'none';
           currentStep = 1;
           updateControlsVisibility();
+          document.querySelector('.dial-tree-card').scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+});
       } else {
           // Expand to show all steps
           isViewAllMode = true;
