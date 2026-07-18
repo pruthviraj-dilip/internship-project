@@ -3151,7 +3151,7 @@ a {
 .dial-tree-card {
     background: var(--dark-color);
     border-radius: 16px;
-    padding: 35px 40px;
+    padding: 25px 35px;
     max-width: 1057px;
     margin: 0 auto 40px;
     color: var(--white);
@@ -3159,7 +3159,7 @@ a {
 }
 
 .dial-tree-content {
-    min-height: 280px;
+    min-height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -3167,11 +3167,11 @@ a {
 
 .dial-tree-step {
     text-align: left;
-    padding: 20px 0;
+    padding: 8px 0;
 }
 
 .step-display {
-    max-width: 650px;
+    max-width: 900px;
     margin: 0;
 }
 
@@ -3242,7 +3242,7 @@ a {
     align-items: center;
     justify-content: center;
     gap: 20px;
-    margin-top: 30px;
+    margin-top: 15px;
     flex-wrap: wrap;
 }
 
