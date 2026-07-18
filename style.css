@@ -3039,8 +3039,8 @@ a {
 .project-content-panel {
     background: var(--white);
     border-radius: 16px;
-    padding: 35px;
-    margin-top: 30px;
+    padding: 24px;
+    margin-top: 12px;
     border: 1px solid var(--border-color);
     position: relative;
     top: -80px;
@@ -3052,8 +3052,7 @@ a {
 }
 
 .oxygen-partition {
-    flex: 1;
-    padding: 30px 30px;
+    padding: 22px;
     border-right: 1px solid var(--border-color);
 }
 
@@ -3061,21 +3060,31 @@ a {
     border-right: none;
 }
 
+.oxygen-partition:first-child {
+    flex: 1.5;
+}
+
+.oxygen-partition:nth-child(2) {
+    flex: 0.8;
+}
+
+.oxygen-partition:last-child {
+    flex: 1.5;
+}
+
 .partition-title {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: var(--dark-color);
     margin-bottom: 15px;
     font-weight: 600;
 }
 
 .partition-text {
-    font-size: 0.2rem;
     color: #555;
-    line-height: 1.6;
+    font-size: 1.12rem;
+    line-height: 1.8;
     margin: 0;
-    font-size: 16px;
-    line-height: 1.7;
     text-align: justify;
     hyphens: auto;
      
