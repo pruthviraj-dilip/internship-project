@@ -964,6 +964,9 @@ const CO2_PER_TREE = 22;
           backBtn.style.display = 'none';
           nextBtn.style.display = 'none';
       } else {
+          nextBtn.style.display = 'inline-block';
+          backBtn.style.display = currentStep === 1 ? 'none' : 'inline-block';
+          stepPills.style.display = 'flex';
           updateStep(currentStep);
       }
   }
