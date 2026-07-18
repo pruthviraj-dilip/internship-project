@@ -3131,12 +3131,20 @@ a {
 /* ========================================
    PROJECT 3: DIAL A TREE
    ======================================== */
+.dial-tree-section {
+    background: var(--light-color);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 50px 0;
+}
+
 .dial-tree-heading {
-    text-align: center;
+    text-align: left;
     font-family: var(--font-heading);
     font-size: 2rem;
     color: var(--dark-color);
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     font-weight: 600;
 }
 
@@ -3151,24 +3159,24 @@ a {
 }
 
 .dial-tree-content {
-    min-height: 200px;
+    min-height: 280px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .dial-tree-step {
-    text-align: center;
+    text-align: left;
     padding: 20px 0;
 }
 
 .step-display {
-    max-width: 500px;
-    margin: 0 auto;
+    max-width: 650px;
+    margin: 0;
 }
 
 .step-number {
-    display: inline-block;
+    display: none;
     width: 45px;
     height: 45px;
     background: rgba(255, 255, 255, 0.15);
@@ -3182,14 +3190,14 @@ a {
 
 .step-title {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: var(--white);
     margin-bottom: 15px;
     font-weight: 600;
 }
 
 .step-body {
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.9);
     margin: 0;
@@ -3220,12 +3228,12 @@ a {
 }
 
 .all-step-item .step-title {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     margin-bottom: 8px;
 }
 
 .all-step-item .step-body {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
 }
 
 /* Controls */
@@ -3268,19 +3276,18 @@ a {
 }
 
 .view-all-btn {
-    background: none;
+    background: #1f1f1f;
+    color: white;
     border: none;
-    color: var(--white);
-    font-family: var(--font-body);
-    font-size: 0.95rem;
+    border-radius: 25px;
+    padding: 10px 22px;
     cursor: pointer;
-    text-decoration: underline;
-    opacity: 0.85;
-    transition: opacity 0.2s ease;
+    font-size: 0.95 rem;
+    text-decoration: none;
 }
 
 .view-all-btn:hover {
-    opacity: 1;
+    background: #333;
 }
 
 .nav-buttons {
@@ -3311,15 +3318,14 @@ a {
 
 .next-btn,
 .start-over-btn {
-    background: var(--gold);
+    background: #1f1f1f;
+    color:white;
     border: none;
-    color: var(--dark-color);
 }
 
 .next-btn:hover,
 .start-over-btn:hover {
-    background: #c47f35;
-    transform: translateY(-1px);
+    background: #333;
 }
 
 .phone-link {
