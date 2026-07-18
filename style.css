@@ -3371,7 +3371,7 @@ a {
 
 .mini-projects-card .project-title {
     font-family: var(--font-heading);
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: var(--dark-color);
     margin-bottom: 25px;
     font-weight: 600;
@@ -3394,7 +3394,7 @@ a {
     position: relative;
     padding-left: 25px;
     margin-bottom: 18px;
-    font-size: 1rem;
+    font-size: 1.25rem;
     color: #3d4a3e;
     line-height: 1.6;
 }
