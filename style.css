@@ -1913,7 +1913,6 @@ a {
   .r-oxy   { transform: translate(-100%, 6px); text-align:right; }
 
 /* MEDIA QUARY:IMPACT CALULATOR */
-/* ================= IMPACT CALCULATOR MOBILE ================= */
 @media (max-width:768px){
 
     .panel{
@@ -2085,7 +2084,7 @@ a {
         display:grid;
         grid-template-columns:repeat(4,1fr);
         gap:15px;
-        padding:15px;
+        padding:20px;
         justify-items:center;
     }
 
