@@ -2300,25 +2300,55 @@ a {
         height: 40px;
     }
 
-    .milestone-timeline {
-        padding: 20px 10px;
-    }
+    /* Mobile Timeline */
+.milestone-timeline {
+    padding: 20px 10px;
+    overflow-x: auto;
+}
 
-    .milestone-items {
-        min-width: 500px;
-    }
+.milestone-items {
+    min-width: 720px;   /* more space between milestones */
+    gap: 40px;
+}
 
-    .milestone-content {
-        width: 110px;
-    }
+.milestone-item {
+    min-width: 140px;
+    padding: 55px 0;
+}
 
-    .milestone-year {
-        font-size: 1rem;
-    }
+/* Disable desktop absolute positioning */
+.milestone-item.milestone-odd .milestone-content,
+.milestone-item.milestone-even .milestone-content {
+    position: static;
+    transform: none;
+    width: 140px;
+}
 
-    .milestone-description {
-        font-size: 0.8rem;
-    }
+/* Year always above the line */
+.milestone-item.milestone-odd .milestone-year,
+.milestone-item.milestone-even .milestone-year {
+    position: absolute;
+    top: calc(50% - 60px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Description always below the line */
+.milestone-item.milestone-odd .milestone-description,
+.milestone-item.milestone-even .milestone-description {
+    position: absolute;
+    top: calc(50% + 28px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    text-align: center;
+    white-space: normal;   /* allow wrapping */
+    font-size: 0.8rem;
+    line-height: 1.3;
+}
 }
 
 /* ========================================
