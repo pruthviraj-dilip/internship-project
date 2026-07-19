@@ -1990,46 +1990,34 @@ a {
     transform: scale(1.1);
     box-shadow: 0 4px 15px rgba(27, 94, 32, 0.4);
 }
+/* media quary releate tree species */
+@media (max-width:768px){
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
-    .species-grid-container {
-        padding: 15px 10px;
-        gap: 15px;
+    .species-grid-container{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        gap:15px;
+        padding:15px;
+        justify-items:center;
     }
 
-    .species-row {
-        gap: 12px;
+    .species-row{
+        display:contents;
     }
 
-    .species-row.offset-row {
-        margin-left: calc(50% + 6px);
+    .species-row.offset-row{
+        margin-left:0;
     }
 
-    .species-circle,
-    .species-circle-inner {
-        width: 85px;
-        height: 85px;
-        font-size: 0.65rem;
-    }
-}
-
-@media (max-width: 400px) {
-    .species-circle,
-    .species-circle-inner {
-        width: 70px;
-        height: 70px;
-        font-size: 0.6rem;
-    }
-
-    .species-row {
-        gap: 10px;
-    }
-
-    .species-row.offset-row {
-        margin-left: calc(50% + 5px);
+    .species-circle{
+        width:70px;
+        height:70px;
+        font-size:0.65rem;
+        padding:6px;
     }
 }
+
+ 
 
 /* ========================================
    SECTION 3: BEFORE/AFTER SLIDER
