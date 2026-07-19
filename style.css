@@ -3507,6 +3507,45 @@ a {
         padding: 25px 20px;
     }
 
+    /* Let Us Know Our Rivers - Mobile */
+
+.project-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.project-column {
+    width: 100%;
+    gap: 20px;
+}
+
+.project-info-card,
+.project-stats-card,
+.project-support-card,
+.river-map-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.project-stats-card,
+.project-support-card,
+.river-map-card {
+    top: 0;
+}
+
+.river-map-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.river-curve {
+    max-height: 180px;
+}
+
     /* Dial A Tree */
     .dial-tree-heading {
         font-size: 1.6rem;
