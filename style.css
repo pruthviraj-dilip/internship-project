@@ -515,6 +515,103 @@ a {
     opacity: 0.9;
 }
 
+/* ========================================
+   QUOTE STRIP SECTION
+   (Reuses .stats class styling)
+   ======================================== */
+.quote-strip {
+    padding: 60px 0;
+    background: linear-gradient(135deg, var(--dark-color) 0%, var(--primary-color) 100%);
+}
+
+.quote-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.quote-portrait {
+    flex-shrink: 0;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.portrait-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.quote-text-container {
+    flex: 1;
+    max-width: 800px;
+    text-align: center;
+}
+
+.quote-text {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.5;
+    margin: 0 0 15px 0;
+    font-weight: 600;
+}
+
+.quote-attribution {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+    display: block;
+    text-align: right;
+    font-style: normal;
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 768px) {
+    .quote-content {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .quote-portrait {
+        width: 100px;
+        height: 100px;
+    }
+
+    .quote-text {
+        font-size: 1.4rem;
+    }
+
+    .quote-attribution {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .quote-strip {
+        padding: 40px 0;
+    }
+
+    .quote-portrait {
+        width: 80px;
+        height: 80px;
+    }
+
+    .quote-text {
+        font-size: 1.2rem;
+    }
+
+    .quote-attribution {
+        font-size: 1rem;
+    }
+}
+
 /* Contact Section */
 .contact {
     padding: 80px 0;
@@ -2761,7 +2858,7 @@ a {
 /* Project Columns Layout */
 .project-columns {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1.5fr 1fr 1fr;
     gap: 25px;
 }
 
@@ -2819,7 +2916,7 @@ a {
     padding: 25px;
     border: 1px solid var(--border-color);
     position: relative;
-    top: 80px;
+    top: 50px;
     
 }
 
@@ -2872,7 +2969,7 @@ a {
     border: 1px solid var(--border-color);
     width: 360px;
     position: relative;
-    top: 50px;
+    top: 20px;
 }
 
 .support-title {
@@ -2939,8 +3036,8 @@ a {
 .project-content-panel {
     background: var(--white);
     border-radius: 16px;
-    padding: 35px;
-    margin-top: 30px;
+    padding: 24px;
+    margin-top: 12px;
     border: 1px solid var(--border-color);
     position: relative;
     top: -80px;
@@ -2952,8 +3049,7 @@ a {
 }
 
 .oxygen-partition {
-    flex: 1;
-    padding: 30px 30px;
+    padding: 22px;
     border-right: 1px solid var(--border-color);
 }
 
@@ -2961,21 +3057,32 @@ a {
     border-right: none;
 }
 
+.oxygen-partition:first-child {
+    flex: 1.5;
+}
+
+.oxygen-partition:nth-child(2) {
+    flex: 0.8;
+}
+
+.oxygen-partition:last-child {
+    flex: 1.5;
+}
+
 .partition-title {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: var(--dark-color);
     margin-bottom: 15px;
     font-weight: 600;
+    text-align:center;
 }
 
 .partition-text {
-    font-size: 0.2rem;
     color: #555;
-    line-height: 1.6;
+    font-size: 1.12rem;
+    line-height: 1.8;
     margin: 0;
-    font-size: 16px;
-    line-height: 1.7;
     text-align: justify;
     hyphens: auto;
      
@@ -2989,7 +3096,7 @@ a {
 }
 
 .language-list li {
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     color: #555;
     margin-bottom: 10px;
     padding-left: 20px;
@@ -3008,7 +3115,7 @@ a {
     text-align: center;
     padding: 30px 0 10px;
     position: relative;
-    top: 477px;
+    top: 520px;
 }
 
 .oxygen-explore-btn {
@@ -3031,44 +3138,53 @@ a {
 /* ========================================
    PROJECT 3: DIAL A TREE
    ======================================== */
+.dial-tree-section {
+    background: var(--light-color);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 22px 40px 5px;
+    margin: 50px 0;
+}
+
 .dial-tree-heading {
-    text-align: center;
+    text-align: left;
     font-family: var(--font-heading);
     font-size: 2rem;
     color: var(--dark-color);
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     font-weight: 600;
 }
 
 .dial-tree-card {
     background: var(--dark-color);
     border-radius: 16px;
-    padding: 35px 40px;
-    max-width: 740px;
+    padding: 25px 35px;
+    max-width: 1057px;
     margin: 0 auto 40px;
     color: var(--white);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .dial-tree-content {
-    min-height: 200px;
+    min-height: 120px;
     display: flex;
+    align-items: flex-start;
     flex-direction: column;
     justify-content: center;
 }
 
 .dial-tree-step {
-    text-align: center;
-    padding: 20px 0;
+    text-align: left;
+    padding: 8px 0;
 }
 
 .step-display {
-    max-width: 500px;
-    margin: 0 auto;
+    max-width: 900px;
+    margin: 0;
 }
 
 .step-number {
-    display: inline-block;
+    display: none;
     width: 45px;
     height: 45px;
     background: rgba(255, 255, 255, 0.15);
@@ -3082,14 +3198,14 @@ a {
 
 .step-title {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: var(--white);
     margin-bottom: 15px;
     font-weight: 600;
 }
 
 .step-body {
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.9);
     margin: 0;
@@ -3120,22 +3236,26 @@ a {
 }
 
 .all-step-item .step-title {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     margin-bottom: 8px;
 }
 
 .all-step-item .step-body {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
 }
 
 /* Controls */
 .dial-tree-controls {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.right-controls {
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
 
 .step-pills {
@@ -3168,19 +3288,21 @@ a {
 }
 
 .view-all-btn {
-    background: none;
+    padding: 10px 28px;
+    border-radius: 25px;
     border: none;
-    color: var(--white);
+    background: #1f1f1f;
+    color: white;
     font-family: var(--font-body);
     font-size: 0.95rem;
+    font-weight: 600;
     cursor: pointer;
-    text-decoration: underline;
-    opacity: 0.85;
-    transition: opacity 0.2s ease;
+    transition: all 0.25s ease;    
 }
 
 .view-all-btn:hover {
-    opacity: 1;
+    background: #333;
+    transform: translateY(-1px);
 }
 
 .nav-buttons {
@@ -3211,15 +3333,14 @@ a {
 
 .next-btn,
 .start-over-btn {
-    background: var(--gold);
+    background: #1f1f1f;
+    color:white;
     border: none;
-    color: var(--dark-color);
 }
 
 .next-btn:hover,
 .start-over-btn:hover {
-    background: #c47f35;
-    transform: translateY(-1px);
+    background: #333;
 }
 
 .phone-link {
@@ -3257,7 +3378,7 @@ a {
 
 .mini-projects-card .project-title {
     font-family: var(--font-heading);
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: var(--dark-color);
     margin-bottom: 25px;
     font-weight: 600;
@@ -3280,7 +3401,7 @@ a {
     position: relative;
     padding-left: 25px;
     margin-bottom: 18px;
-    font-size: 1rem;
+    font-size: 1.25rem;
     color: #3d4a3e;
     line-height: 1.6;
 }

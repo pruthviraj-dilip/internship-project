@@ -883,7 +883,7 @@ const CO2_PER_TREE = 22;
           body: "The soil is closed back over the roots, and your tree is left ready to grow."
       },
       {
-          title: "Ready to Call Us",
+          title: "Ready to Call Us ?",
           body: "Call us on <a href='tel:9822523895' class='phone-link'>9822523895</a>"
       }
   ];
@@ -945,12 +945,13 @@ const CO2_PER_TREE = 22;
       if (stepNum === totalSteps) {
           nextBtn.textContent = 'Start over';
           nextBtn.classList.add('start-over-btn');
-          stepPills.style.display = 'none';
       } else {
           nextBtn.textContent = 'Next';
           nextBtn.classList.remove('start-over-btn');
           stepPills.style.display = 'flex';
       }
+
+      stepPills.style.display = 'flex';
 
       // Hide "View all steps" on steps 2-8
       viewAllBtn.style.display = stepNum === 1 ? 'inline-block' : 'none';
@@ -964,6 +965,10 @@ const CO2_PER_TREE = 22;
           backBtn.style.display = 'none';
           nextBtn.style.display = 'none';
       } else {
+          viewAllBtn.textContent = "View all steps";
+          nextBtn.style.display = 'inline-block';
+          backBtn.style.display = currentStep === 1 ? 'none' : 'inline-block';
+          stepPills.style.display = 'flex';
           updateStep(currentStep);
       }
   }
@@ -987,6 +992,10 @@ const CO2_PER_TREE = 22;
           dialTreeAll.style.display = 'none';
           currentStep = 1;
           updateControlsVisibility();
+          document.querySelector('.dial-tree-card').scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+});
       } else {
           // Expand to show all steps
           isViewAllMode = true;
