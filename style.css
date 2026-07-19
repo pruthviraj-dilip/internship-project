@@ -1912,16 +1912,104 @@ a {
   .r-water { transform: translate(6px, -50%); text-align:left; }
   .r-oxy   { transform: translate(-100%, 6px); text-align:right; }
 
-  @media (max-width:700px){
-    .diagram{max-width:320px;}
-    .readout{ transform:none !important; position:static; text-align:left !important; margin-bottom:18px; }
-    .diagram svg .leader-line{ display:none; }
-  }
+/* MEDIA QUARY:IMPACT CALULATOR */
+/* ================= IMPACT CALCULATOR MOBILE ================= */
+@media (max-width:768px){
 
-  @media (prefers-reduced-motion: reduce){
-    * { transition: none !important; }
-  }
+    .panel{
+        padding:25px 18px;
+        margin:30px 0;
+        border-radius:20px;
+    }
 
+    .card-header{
+        font-size:2rem;
+        margin-bottom:25px;
+        text-align:left;
+    }
+
+    .calc{
+        display:flex;
+        flex-direction:column;
+        gap:30px;
+    }
+
+    /* Input Card */
+
+    .input-card{
+        width:100%;
+        padding:20px;
+    }
+
+    .input-card .q{
+        font-size:1.8rem;
+        line-height:1.3;
+        margin-bottom:18px;
+    }
+
+    .stepper{
+        width:100%;
+    }
+
+    .stepper button{
+        width:55px;
+        height:55px;
+        font-size:28px;
+    }
+
+    .stepper input{
+        font-size:28px;
+        height:55px;
+    }
+
+    .presets{
+        justify-content:center;
+        gap:12px;
+    }
+
+    .presets button{
+        flex:1;
+        min-width:65px;
+        padding:10px 0;
+        font-size:14px;
+    }
+
+    /* Diagram */
+
+    .diagram{
+        width:100%;
+        max-width:100%;
+        aspect-ratio:auto;
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .diagram svg{
+        display:none;
+    }
+
+    .readout{
+        position:static;
+        transform:none !important;
+        max-width:100%;
+        margin:0 0 18px;
+        text-align:left !important;
+    }
+
+    .readout .num{
+        font-size:2.3rem;
+    }
+
+    .readout .unit{
+        font-size:1rem;
+    }
+
+    .readout .cap{
+        font-size:1rem;
+        line-height:1.5;
+    }
+}
 /* ========================================
    SECTION 2: TREE SPECIES GRID
    ======================================== */
