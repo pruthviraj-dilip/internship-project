@@ -3801,32 +3801,3 @@ a {
         font-size: 0.8rem;
     }
 }
-
-/* ========================================
-   MOBILE - PROJECTS PAGE
-======================================== */
-
-@media (max-width:768px){
-
-    .project-columns{
-        display:flex;
-        flex-direction:column;
-        gap:20px;
-    }
-
-    .project-column{
-        width:100%;
-    }
-
-    .project-info-card,
-    .project-stats-card,
-    .project-support-card,
-    .river-map-card{
-
-        width:100%;
-        max-width:100%;
-        margin:0;
-        box-sizing:border-box;
-    }
-
-}
