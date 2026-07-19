@@ -2080,13 +2080,13 @@ a {
 /* media quary releate tree species */
 @media (max-width:768px){
 
-    .species-grid-container{
-        display:grid;
-        grid-template-columns:repeat(4,1fr);
-        gap:15px;
-        padding:20px;
-        justify-items:center;
-    }
+   .species-grid-container{
+    display:grid;
+    grid-template-columns:repeat(4,70px);
+    justify-content:center;
+    gap:15px;
+    padding:20px;
+}
 
     .species-row{
         display:contents;
